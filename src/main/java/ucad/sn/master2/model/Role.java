@@ -1,6 +1,7 @@
 package ucad.sn.master2.model;
 
 import jakarta.persistence.*;
+import ucad.sn.master2.util.RoleType;
 
 @Entity
 public class Role {
@@ -8,8 +9,9 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(unique = true)
-    private String role;
+    private RoleType role;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -18,7 +20,7 @@ public class Role {
     public Role() {
     }
 
-    public Role(Long id, String role, Users user) {
+    public Role(Long id, RoleType role, Users user) {
         this.id = id;
         this.role = role;
         this.user = user;
@@ -33,11 +35,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getRole() {
+    public RoleType getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(RoleType role) {
         this.role = role;
     }
 
