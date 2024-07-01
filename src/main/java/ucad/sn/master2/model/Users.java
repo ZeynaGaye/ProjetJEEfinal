@@ -1,10 +1,12 @@
 package ucad.sn.master2.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import ucad.sn.master2.util.Genre;
+
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +29,7 @@ public class Users {
     public Users() {
     }
 
-    public Users(Long id, String nom, String prenom, Genre genre, String adresse, String email, String motDePasse) {
-        this.id = id;
+    public Users(String nom, String prenom, Genre genre, String adresse, String email, String motDePasse) {
         this.nom = nom;
         this.prenom = prenom;
         this.genre = genre;
@@ -95,7 +96,11 @@ public class Users {
         this.motDePasse = motDePasse;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
 
-
-
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }

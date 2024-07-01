@@ -1,4 +1,4 @@
-package ucad.sn.master2.model;
+package ucad.sn.master2.util;
 
 
 public enum Genre {

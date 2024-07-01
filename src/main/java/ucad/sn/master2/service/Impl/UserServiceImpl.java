@@ -4,6 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ucad.sn.master2.model.Administrateur;
+import ucad.sn.master2.model.Enseignant;
+import ucad.sn.master2.model.Etudiant;
 import ucad.sn.master2.model.Users;
 import ucad.sn.master2.repository.UserRepository;
 import ucad.sn.master2.service.UserService;
@@ -59,5 +62,12 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
         logger.info("Suppression de l'utilisateur avec ID : {}", id);
+    }
+
+    @Override
+    public void saveUser(Users userForm) {
+        if (userForm instanceof Etudiant || userForm instanceof Enseignant || userForm instanceof Administrateur) {
+            userRepository.save(userForm);
+        }
     }
 }
