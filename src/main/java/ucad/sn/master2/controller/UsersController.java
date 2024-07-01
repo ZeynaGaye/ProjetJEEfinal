@@ -6,9 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import ucad.sn.master2.model.Administrateur;
+import ucad.sn.master2.model.Classe;
 import ucad.sn.master2.model.Enseignant;
 import ucad.sn.master2.model.Etudiant;
 import ucad.sn.master2.model.Users;
+import ucad.sn.master2.repository.ClasseRepository;
 import ucad.sn.master2.repository.UserRepository;
 
 import java.util.List;
@@ -19,18 +21,23 @@ public class UsersController {
     @Autowired
     private UserRepository usersRepository;
 
+    @Autowired
+    private ClasseRepository classeRepository;
+
     @GetMapping("/users/add")
     public String showAddUserForm(Model model) {
         model.addAttribute("userForm", new Users());
+        model.addAttribute("classes", classeRepository.findAll());
         return "addUser";
     }
 
     @PostMapping("/users/add")
-    public String addUser(Users userForm, String userType, String numeroEtudiant, String classe, String matricule) {
+    public String addUser(Users userForm, String userType, String numeroEtudiant, Long classeId, String matricule) {
         Users user;
 
         switch (userType) {
             case "Etudiant":
+                Classe classe = classeRepository.findById(classeId).orElseThrow(() -> new IllegalArgumentException("Classe not found: " + classeId));
                 user = new Etudiant(userForm.getNom(), userForm.getPrenom(), userForm.getGenre(), userForm.getAdresse(), userForm.getEmail(), userForm.getMotDePasse(), numeroEtudiant, classe);
                 break;
             case "Enseignant":
