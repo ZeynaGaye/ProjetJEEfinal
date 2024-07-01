@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Ressources</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Liste des Ressources</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Type</th>
+            <th scope="col">Chemin</th>
+            <th scope="col">Date d'Ajout</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ressource : ${ressources}">
+            <td th:text="${ressource.id}">1</td>
+            <td th:text="${ressource.nom}">Nom de la Ressource</td>
+            <td th:text="${ressource.type}">Type</td>
+            <td th:text="${ressource.chemin}">Chemin</td>
+            <td th:text="${#temporals.format(ressource.dateAjout, 'dd/MM/yyyy')}">01/01/2024</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
