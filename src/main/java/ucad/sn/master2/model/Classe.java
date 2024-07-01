@@ -14,7 +14,7 @@ public class Classe {
     private String niveau;
 
     @ManyToOne
-    @JoinColumn(name = "enseignant_id")
+    @JoinColumn(name = "enseignant_id", nullable = true)
     private Enseignant enseignantResponsable;
 
     @OneToMany(mappedBy = "classe")

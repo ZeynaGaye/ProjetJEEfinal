@@ -35,20 +35,17 @@ public class ModuleController {
 
     @PostMapping("/modules/add")
     public String addModule(@ModelAttribute("moduleForm") Module moduleForm, Long enseignantId, Long classeId) {
-        if (enseignantId == null) {
-            throw new IllegalArgumentException("Enseignant ID must not be null");
-        }
-        if (classeId == null) {
-            throw new IllegalArgumentException("Classe ID must not be null");
+        if (enseignantId != null) {
+            Enseignant enseignant = enseignantRepository.findById(enseignantId)
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid enseignant Id:" + enseignantId));
+            moduleForm.setEnseignant(enseignant);
         }
 
-        Enseignant enseignant = enseignantRepository.findById(enseignantId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid enseignant Id:" + enseignantId));
-        Classe classe = classeRepository.findById(classeId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid classe Id:" + classeId));
-
-        moduleForm.setEnseignant(enseignant);
-        moduleForm.setClasse(classe);
+        if (classeId != null) {
+            Classe classe = classeRepository.findById(classeId)
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid classe Id:" + classeId));
+            moduleForm.setClasse(classe);
+        }
 
         moduleRepository.save(moduleForm);
         return "redirect:/modules/add";

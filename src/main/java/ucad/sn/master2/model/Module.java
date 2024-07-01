@@ -13,11 +13,11 @@ public class Module {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "enseignant_id")
+    @JoinColumn(name = "enseignant_id", nullable = true)
     private Enseignant enseignant;
 
     @ManyToOne
-    @JoinColumn(name = "classe_id")
+    @JoinColumn(name = "classe_id", nullable = true)
     private Classe classe;
 
     @OneToMany(mappedBy = "module")
@@ -79,6 +79,4 @@ public class Module {
     public void setRessources(List<Ressource> ressources) {
         this.ressources = ressources;
     }
-
-
 }
