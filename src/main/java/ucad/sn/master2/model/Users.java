@@ -12,8 +12,8 @@ public class Users {
     private String nom;
     private String prenom;
 
-    @Enumerated(EnumType.STRING)
-    private Genre genre;
+
+    private  String  genre;
 
     private String adresse;
 
@@ -27,7 +27,7 @@ public class Users {
     public Users() {
     }
 
-    public Users(Long id, String nom, String prenom, Genre genre, String adresse, String email, String motDePasse) {
+    public Users(Long id, String nom, String prenom, String genre, String adresse, String email, String motDePasse) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -63,11 +63,11 @@ public class Users {
         this.prenom = prenom;
     }
 
-    public Genre getGenre() {
+    public String  getGenre() {
         return genre;
     }
 
-    public void setGenre(Genre genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
