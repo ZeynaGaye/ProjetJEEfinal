@@ -2,32 +2,32 @@ package ucad.sn.master2.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Users {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
     private String prenom;
-
-
+    @Temporal(TemporalType.DATE)
+   private Date Date_Naissance;
     private  String  genre;
-
     private String adresse;
-
     @Column(unique = true)
     private String email;
     private String motDePasse;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Role> roles;
 
     public Users() {
     }
 
-    public Users(Long id, String nom, String prenom, String genre, String adresse, String email, String motDePasse) {
+    public Users(Long id, String nom, String prenom,Date Date_Naissance, String genre, String adresse, String email, String motDePasse) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -35,9 +35,8 @@ public class Users {
         this.adresse = adresse;
         this.email = email;
         this.motDePasse = motDePasse;
+        this.Date_Naissance=Date_Naissance;
     }
-
-    // Getters and Setters for all fields
 
     public Long getId() {
         return id;
@@ -63,9 +62,18 @@ public class Users {
         this.prenom = prenom;
     }
 
+    public Date getDate_Naissance() {
+        return Date_Naissance;
+    }
+
+    public void setDate_Naissance(Date date_Naissance) {
+        Date_Naissance = date_Naissance;
+    }
+
     public String  getGenre() {
         return genre;
     }
+
 
     public void setGenre(String genre) {
         this.genre = genre;
