@@ -1,8 +1,10 @@
 package ucad.sn.master2.service.Impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ucad.sn.master2.model.Administrateur;
 import ucad.sn.master2.model.Enseignant;
@@ -13,11 +15,10 @@ import ucad.sn.master2.service.UserService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
-
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UserRepository userRepository;
 
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users saveUsers(Users user) {
-        logger.info("Enregistrement de l'utilisateur  avec succes: {}", user);
+        user.setMotDePasse(new BCryptPasswordEncoder().encode(user.getMotDePasse()));
         return userRepository.save(user);
     }
 
@@ -51,8 +52,7 @@ public class UserServiceImpl implements UserService {
                     existingUser.setGenre(user.getGenre());
                     existingUser.setAdresse(user.getAdresse());
                     existingUser.setEmail(user.getEmail());
-                    existingUser.setMotDePasse(user.getMotDePasse());
-                    logger.info("Mise à jour de l'utilisateur avec succes : {}", existingUser);
+                    existingUser.setMotDePasse(new BCryptPasswordEncoder().encode(user.getMotDePasse()));
                     return userRepository.save(existingUser);
                 })
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
@@ -61,7 +61,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
-        logger.info("Suppression de l'utilisateur avec ID : {}", id);
     }
 
     @Override
@@ -69,5 +68,15 @@ public class UserServiceImpl implements UserService {
         if (userForm instanceof Etudiant || userForm instanceof Enseignant || userForm instanceof Administrateur) {
             userRepository.save(userForm);
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Users user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non trouvé avec email: " + email));
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getMotDePasse(),
+                user.getRoles().stream()
+                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole().name()))
+                        .collect(Collectors.toList()));
     }
 }
