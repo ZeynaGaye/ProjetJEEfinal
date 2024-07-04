@@ -38,13 +38,13 @@ public class UsersController {
         switch (userType) {
             case "Etudiant":
                 Classe classe = classeRepository.findById(classeId).orElseThrow(() -> new IllegalArgumentException("Classe not found: " + classeId));
-                user = new Etudiant(userForm.getNom(), userForm.getPrenom(), userForm.getGenre(), userForm.getAdresse(), userForm.getEmail(), userForm.getMotDePasse(), numeroEtudiant, classe);
+                user = new Etudiant(userForm.getNom(), userForm.getPrenom(),userForm.getDateNaissance(), userForm.getGenre(), userForm.getAdresse(), userForm.getEmail(), userForm.getMotDePasse(), numeroEtudiant, classe);
                 break;
             case "Enseignant":
-                user = new Enseignant(userForm.getNom(), userForm.getPrenom(), userForm.getGenre(), userForm.getAdresse(), userForm.getEmail(), userForm.getMotDePasse(), matricule);
+                user = new Enseignant(userForm.getNom(), userForm.getPrenom(),userForm.getDateNaissance(), userForm.getGenre(), userForm.getAdresse(), userForm.getEmail(), userForm.getMotDePasse(), matricule);
                 break;
             case "Administrateur":
-                user = new Administrateur(userForm.getNom(), userForm.getPrenom(), userForm.getGenre(), userForm.getAdresse(), userForm.getEmail(), userForm.getMotDePasse());
+                user = new Administrateur(userForm.getNom(), userForm.getPrenom(),userForm.getDateNaissance(), userForm.getGenre(), userForm.getAdresse(), userForm.getEmail(), userForm.getMotDePasse());
                 break;
             default:
                 throw new IllegalArgumentException("Invalid user type: " + userType);

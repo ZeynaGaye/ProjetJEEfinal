@@ -1,10 +1,18 @@
 package ucad.sn.master2.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import ucad.sn.master2.util.Genre;
 
+import java.util.Date;
+
 @Entity
+
 public class Etudiant extends Users {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id ;
     private String numeroEtudiant;
 
     @ManyToOne
@@ -13,8 +21,8 @@ public class Etudiant extends Users {
 
     public Etudiant() {}
 
-    public Etudiant(String nom, String prenom, Genre genre, String adresse, String email, String motDePasse, String numeroEtudiant, Classe classe) {
-        super(nom, prenom,  genre, adresse, email, motDePasse);
+    public Etudiant(String nom, String prenom, Date dateNaissance, Genre genre, String adresse, String email, String motDePasse, String numeroEtudiant, Classe classe) {
+        super(nom, prenom, dateNaissance, genre, adresse, email, motDePasse);
         this.numeroEtudiant = numeroEtudiant;
         this.classe = classe;
     }
