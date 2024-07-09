@@ -8,7 +8,7 @@ import ucad.sn.master2.model.Users;
 
 import java.util.List;
 import java.util.Optional;
-public interface UserService extends UserDetailsService {
+public interface UserService extends UserDetailsService{
     Users saveUsers(Users user);
     List<Users> getAllUsers();
     Optional<Users> getUserById(Long id);

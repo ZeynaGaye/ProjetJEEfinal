@@ -9,5 +9,5 @@ public interface ClasseService {
     Classe sauvegarderClasse(Classe classe);
     List<Classe> trouverToutesLesClasses();
     Optional<Classe> trouverClasseParId(Long id);
-    // Ajoutez d'autres méthodes si nécessaire
+
 }

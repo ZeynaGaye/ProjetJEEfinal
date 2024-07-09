@@ -34,5 +34,5 @@ public class ClasseServiceImpl implements ClasseService {
         return classeRepository.findById(id);
     }
 
-    // Vous pouvez ajouter d'autres méthodes d'implémentation ici si nécessaire
+
 }
