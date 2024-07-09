@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un module</title>
+    <!-- Intégration de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Ajouter un module</h2>
+    <form th:action="@{/enseignant-responsable/add-module}" th:object="${module}" method="post">
+        <div class="form-group">
+            <label for="nom">Nom du module :</label>
+            <input type="text" class="form-control" id="nom" th:field="*{nom}" placeholder="Entrez le nom du module" />
+        </div>
+        <div class="form-group">
+            <label for="description">Description :</label>
+            <textarea class="form-control" id="description" th:field="*{description}" placeholder="Entrez la description du module"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>
+
+<!-- Intégration de Bootstrap JavaScript (facultatif, uniquement si nécessaire) -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

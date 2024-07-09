@@ -1,0 +1,33 @@
+<!-- /src/main/resources/templates/enseignant-responsable/layout.html -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<div id="header" th:fragment="header">
+    <!-- Header commun -->
+    <h1>Header de l'application</h1>
+    <nav>
+        <ul>
+            <li><a th:href="@{/classes}">Classes</a></li>
+            <li><a th:href="@{/add-annonce}">Ajouter Annonce</a></li>
+            <li><a th:href="@{/add-module}">Ajouter Module</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div id="content" th:fragment="content">
+    <!-- Contenu spécifique -->
+    <div th:replace="${contentTemplate} :: content"></div>
+</div>
+
+<div id="footer" th:fragment="footer">
+    <!-- Footer commun -->
+    <p>Pied de page de l'application</p>
+</div>
+</body>
+</html>

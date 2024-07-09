@@ -1,41 +1,52 @@
 package ucad.sn.master2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import ucad.sn.master2.model.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import ucad.sn.master2.model.Annonce;
+import ucad.sn.master2.model.Classe;
 import ucad.sn.master2.model.Module;
 import ucad.sn.master2.service.EnseignantResponsableService;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/responsable")
+@Controller
 public class EnseignantResponsableController {
+
     @Autowired
-    private EnseignantResponsableService responsableService;
+    private EnseignantResponsableService enseignantResponsableService;
 
-    @PostMapping("/gererModules/{classeId}")
-    public ResponseEntity<Void> gererModules(@PathVariable Long classeId, @RequestBody List<Module> modules){
-        responsableService.gererModules(classeId, modules);
-        return ResponseEntity.ok().build();
+    @GetMapping("/classes")
+    public String getAllClasses(Model model) {
+        List<Classe> classes = enseignantResponsableService.getAllClasses();
+        model.addAttribute("classes", classes);
+        return "classes";
     }
 
-    @PostMapping("/affecterEnseignant/{classeId}/{enseignantId}")
-    public ResponseEntity<Void> affecterEnseignant(@PathVariable Long classeId, @RequestBody Enseignant enseignant){
-        responsableService.affecterEnseignant(classeId,enseignant);
-        return ResponseEntity.ok().build();
+    @GetMapping("/add-annonce")
+    public String showAddAnnonceForm(Model model) {
+        model.addAttribute("annonce", new Annonce());
+        return "add-annonce";
     }
 
-    @PostMapping("/gererEtudiants/{classeId}")
-    public ResponseEntity<Void> gererEtudiants(@PathVariable Long classeId, @RequestBody List<Users> etudiants){
-        responsableService.gererEtudiants(classeId,etudiants);
-        return ResponseEntity.ok().build();
-    }
-    @PostMapping("/gererAnnonces/{classeId}")
-    public ResponseEntity<Void> gererAnnonces(@PathVariable Long classeId, @RequestBody List<Annonce> annonces){
-        responsableService.gererAnnonces(classeId,annonces);
-        return ResponseEntity.ok().build();
+    @PostMapping("/add-annonce")
+    public String addAnnonce(@ModelAttribute("annonce") Annonce annonce) {
+        enseignantResponsableService.addAnnonce(annonce);
+        return "redirect:/classes";
     }
 
+    @GetMapping("/add-module")
+    public String showAddModuleForm(Model model) {
+        model.addAttribute("module", new Module());
+        return "add-module";
+    }
+
+    @PostMapping("/add-module")
+    public String addModule(@ModelAttribute("module") Module module) {
+        enseignantResponsableService.addModule(module);
+        return "redirect:/classes";
+    }
 }

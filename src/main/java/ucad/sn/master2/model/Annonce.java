@@ -1,20 +1,34 @@
 package ucad.sn.master2.model;
 
-import jakarta.persistence.*;
-import lombok.Data;
-
-import java.util.Date;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-@Data
 public class Annonce {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String titre;
-    private String contenu;
-    private Date datePublication;
+    private Long id;
 
-    @ManyToOne
-    private Classe classe;
+    private String contenu;
+
+    // Getters et setters (nécessaires pour JPA)
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContenu() {
+        return contenu;
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
 }

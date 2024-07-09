@@ -90,4 +90,8 @@ public class Classe {
 
     public void setEnseignant(Enseignant enseignant) {
     }
+
+    public List<Annonce> getAnnonces() {
+        return null;
+    }
 }

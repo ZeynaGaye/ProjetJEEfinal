@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de la classe</title>
+    <!-- Intégration de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Détails de la classe</h2>
+    <p>Nom de la classe : <span th:text="${classe.nom}">Nom</span></p>
+    <p>Description : <span th:text="${classe.description}">Description</span></p>
+
+    <!-- Liens d'action -->
+    <div class="mt-4">
+        <a th:href="@{'/enseignant-responsable/add-annonce/' + ${classe.id}}" class="btn btn-primary">Ajouter une annonce</a>
+        <a th:href="@{'/enseignant-responsable/add-module/' + ${classe.id}}" class="btn btn-primary">Ajouter un module</a>
+    </div>
+</div>
+
+<!-- Intégration de Bootstrap JavaScript (facultatif, uniquement si nécessaire) -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

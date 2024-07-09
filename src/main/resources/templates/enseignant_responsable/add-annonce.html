@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une annonce</title>
+    <!-- Intégration de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Ajouter une annonce</h2>
+    <form th:action="@{/enseignant-responsable/add-annonce}" th:object="${annonce}" method="post">
+        <div class="form-group">
+            <label for="contenu">Contenu de l'annonce :</label>
+            <input type="text" class="form-control" id="contenu" th:field="*{contenu}" placeholder="Entrez le contenu de l'annonce" />
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>
+
+<!-- Intégration de Bootstrap JavaScript (facultatif, uniquement si nécessaire) -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
