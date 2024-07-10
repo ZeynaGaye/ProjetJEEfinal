@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Ajouter Enseignant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5 mb-3">Ajouter Enseignant</h2>
+    <form th:action="@{/enseignant-responsable/ajouter-enseignant}" th:object="${enseignant}" method="post">
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" id="nom" th:field="${enseignant.nom}" required>
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="form-control" id="prenom" th:field="${enseignant.prenom}" required>
+        </div>
+        <div class="form-group">
+            <label for="dateNaissance">Date de Naissance</label>
+            <input type="date" class="form-control" id="dateNaissance" th:field="${enseignant.dateNaissance}" required>
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre</label>
+            <select class="form-control" id="genre" th:field="${enseignant.genre}">
+                <option value="HOMME">Homme</option>
+                <option value="FEMME">Femme</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="adresse">Adresse</label>
+            <input type="text" class="form-control" id="adresse" th:field="${enseignant.adresse}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" th:field="${enseignant.email}" required>
+        </div>
+        <div class="form-group">
+            <label for="motDePasse">Mot de Passe</label>
+            <input type="password" class="form-control" id="motDePasse" th:field="${enseignant.motDePasse}" required>
+        </div>
+        <div class="form-group">
+            <label for="matricule">Matricule</label>
+            <input type="text" class="form-control" id="matricule" th:field="${enseignant.matricule}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+</div>
+</body>
+</html>

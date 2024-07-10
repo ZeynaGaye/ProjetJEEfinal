@@ -1,7 +1,10 @@
 package ucad.sn.master2.model;
 
 import jakarta.persistence.*;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Classe {
@@ -17,11 +20,18 @@ public class Classe {
     @JoinColumn(name = "enseignant_id", nullable = true)
     private Enseignant enseignantResponsable;
 
-    @OneToMany(mappedBy = "classe")
+    @ManyToMany
+    @JoinTable(
+            name = "classe_enseignant",
+            joinColumns = @JoinColumn(name = "classe_id"),
+            inverseJoinColumns = @JoinColumn(name = "enseignant_id"))
+    private Set<Enseignant> enseignants = new HashSet<>();
+    @OneToMany(mappedBy = "Classe")
     private List<Module> modules;
 
-    @OneToMany(mappedBy = "classe")
-    private List<Users> etudiants;
+    @OneToMany(mappedBy = "Classe")
+    private List<Users> etudiants,enseignant;
+
 
     public Classe() {}
 
@@ -88,10 +98,17 @@ public class Classe {
         this.etudiants = etudiants;
     }
 
-    public void setEnseignant(Enseignant enseignant) {
+
+    public List<Annonce> getAnnonces(List<Annonce> annonce) {
+        return annonce;
     }
 
-    public List<Annonce> getAnnonces() {
-        return null;
+
+    public List<Users> getEnseignant() {
+        return enseignant;
+    }
+
+    public void setEnseignant(List<Users> enseignant) {
+        this.enseignant = enseignant;
     }
 }

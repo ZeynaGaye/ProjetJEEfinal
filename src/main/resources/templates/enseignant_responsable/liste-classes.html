@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Liste des Classes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5 mb-3">Liste des Classes</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nom de la Classe</th>
+            <th>Enseignants</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="classe : ${classes}">
+            <td th:text="${classe.nom}"></td>
+            <td>
+                <ul>
+                    <li th:each="enseignant : ${classe.enseignants}" th:text="${enseignant.nom + ' ' + enseignant.prenom}"></li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/enseignant-responsable/affecter-enseignant" class="btn btn-primary">Affecter un Enseignant à une Classe</a>
+</div>
+</body>
+</html>
