@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un module</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2 class="my-4">Ajouter un module</h2>
+
+    <!-- Form to add a module -->
+    <form action="#" th:action="@{/module/save}" th:object="${module}" method="post">
+        <div class="form-group">
+            <label for="nom">Nom du module :</label>
+            <input type="text" class="form-control" id="nom" th:field="*{nom}" placeholder="Nom du module">
+        </div>
+        <div class="form-group">
+            <label for="description">Description du module :</label>
+            <textarea class="form-control" id="description" th:field="*{description}" rows="5" placeholder="Description du module"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter le module</button>
+    </form>
+
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-6L0sd1F/3eVwhBPLR9O+TwGY4jBbLHR5Q+8eT0NH6dHrzJKcw+7pXLmK+1EVAjvi" crossorigin="anonymous"></script>
+</body>
+</html>
