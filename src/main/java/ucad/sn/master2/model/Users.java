@@ -3,6 +3,7 @@ package ucad.sn.master2.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.security.core.userdetails.UserDetails;
 import ucad.sn.master2.util.Genre;
 
 import java.util.Date;
@@ -26,7 +27,7 @@ public class Users {
     private String email;
     private String motDePasse;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Role> roles;
 
     public Users() {}

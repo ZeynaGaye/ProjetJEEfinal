@@ -1,5 +1,6 @@
 package ucad.sn.master2.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/responsable")
+@AllArgsConstructor
 public class EnseignantResponsableController {
-    @Autowired
+
     private EnseignantResponsableService responsableService;
 
     @PostMapping("/gererModules/{classeId}")
@@ -28,7 +30,7 @@ public class EnseignantResponsableController {
     }
 
     @PostMapping("/gererEtudiants/{classeId}")
-    public ResponseEntity<Void> gererEtudiants(@PathVariable Long classeId, @RequestBody List<Users> etudiants){
+    public ResponseEntity<Void> gererEtudiants(@PathVariable Long classeId, @RequestBody List<Etudiant> etudiants){
         responsableService.gererEtudiants(classeId,etudiants);
         return ResponseEntity.ok().build();
     }

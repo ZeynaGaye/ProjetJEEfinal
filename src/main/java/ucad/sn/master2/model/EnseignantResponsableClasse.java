@@ -8,6 +8,6 @@ import java.util.List;
 @Entity
 @Data
 public class EnseignantResponsableClasse extends Users{
-    @OneToMany(mappedBy = "responsable")
+    @OneToMany(mappedBy = "id")
     private List<Classe> classes;
 }

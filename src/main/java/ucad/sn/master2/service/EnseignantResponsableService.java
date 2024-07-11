@@ -8,11 +8,9 @@ import ucad.sn.master2.repository.ClasseRepository;
 import ucad.sn.master2.repository.ModuleRepository;
 
 import java.util.List;
-
-@Service
 public interface EnseignantResponsableService {
     void gererModules(Long classeId, List<Module> modules);
     void affecterEnseignant(Long classeId, Enseignant enseignant);
-    void gererEtudiants(Long classeId, List<Users> etudiants);
+    void gererEtudiants(Long classeId, List<Etudiant> etudiants);
     void gererAnnonces(Long classeId, List<Annonce> annonces);
 }

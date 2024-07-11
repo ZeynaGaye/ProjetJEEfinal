@@ -21,7 +21,7 @@ public class Classe {
     private List<Module> modules;
 
     @OneToMany(mappedBy = "classe")
-    private List<Users> etudiants;
+    private List<Etudiant> etudiants;
 
     public Classe() {}
 
@@ -80,11 +80,11 @@ public class Classe {
         this.modules = modules;
     }
 
-    public List<Users> getEtudiants() {
+    public List<Etudiant> getEtudiants() {
         return etudiants;
     }
 
-    public void setEtudiants(List<Users> etudiants) {
+    public void setEtudiants(List<Etudiant> etudiants) {
         this.etudiants = etudiants;
     }
 

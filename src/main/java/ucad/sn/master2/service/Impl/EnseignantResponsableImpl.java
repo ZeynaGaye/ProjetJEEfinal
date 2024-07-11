@@ -47,7 +47,7 @@ public class EnseignantResponsableImpl implements EnseignantResponsableService {
   }
 
   @Override
-  public void gererEtudiants(Long classeId, List<Users> etudiants) {
+  public void gererEtudiants(Long classeId, List<Etudiant> etudiants) {
     Classe classe = classeRepository.findById(classeId)
             .orElseThrow(() -> {
                 return new EntityNotFoundException("Classe not found with id " + classeId);
