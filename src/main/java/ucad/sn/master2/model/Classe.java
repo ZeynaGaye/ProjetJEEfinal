@@ -1,7 +1,6 @@
 package ucad.sn.master2.model;
 
 import jakarta.persistence.*;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +10,9 @@ public class Classe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "classe")
+    private List<Etudiant> etudiants;
 
     private String nom;
     private String description;
@@ -26,21 +28,13 @@ public class Classe {
             joinColumns = @JoinColumn(name = "classe_id"),
             inverseJoinColumns = @JoinColumn(name = "enseignant_id"))
     private Set<Enseignant> enseignants = new HashSet<>();
-    @OneToMany(mappedBy = "Classe")
+
+    @OneToMany(mappedBy = "classe")
     private List<Module> modules;
-
-    @OneToMany(mappedBy = "Classe")
-    private List<Users> etudiants,enseignant;
-
 
     public Classe() {}
 
-    public Classe(String nom, String description, String niveau, Enseignant enseignantResponsable) {
-        this.nom = nom;
-        this.description = description;
-        this.niveau = niveau;
-        this.enseignantResponsable = enseignantResponsable;
-    }
+    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -90,25 +84,17 @@ public class Classe {
         this.modules = modules;
     }
 
-    public List<Users> getEtudiants() {
-        return etudiants;
+
+    public Set<Enseignant> getEnseignants() {
+        return enseignants;
     }
 
-    public void setEtudiants(List<Users> etudiants) {
-        this.etudiants = etudiants;
+    public void setEnseignants(Set<Enseignant> enseignants) {
+        this.enseignants = enseignants;
     }
 
-
-    public List<Annonce> getAnnonces(List<Annonce> annonce) {
-        return annonce;
-    }
-
-
-    public List<Users> getEnseignant() {
-        return enseignant;
-    }
-
-    public void setEnseignant(List<Users> enseignant) {
-        this.enseignant = enseignant;
+    public void addEnseignant(Enseignant enseignant) {
+        enseignants.add(enseignant);
+        enseignant.getClasses().add(this);
     }
 }

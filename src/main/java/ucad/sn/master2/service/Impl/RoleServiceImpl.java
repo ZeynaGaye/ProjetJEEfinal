@@ -1,15 +1,19 @@
 package ucad.sn.master2.service.Impl;
 
+import ucad.sn.master2.util.RoleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ucad.sn.master2.model.Administrateur;
 import ucad.sn.master2.model.Role;
 import ucad.sn.master2.model.Users;
 import ucad.sn.master2.repository.RoleRepository;
 import ucad.sn.master2.repository.UserRepository;
 import ucad.sn.master2.service.RoleService;
+import ucad.sn.master2.util.RoleType;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -56,4 +60,22 @@ public class RoleServiceImpl implements RoleService {
     public void deleteRole(Long id) {
         roleRepository.deleteById(id);
     }
+
+    @Override
+    public void addRoleToUser(Administrateur nouveauAdministrateur, RoleType roleType) {
+        // Recherche de l'utilisateur dans la base de données
+        Users existingUser = userRepository.findById(nouveauAdministrateur.getId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Création du rôle avec le type spécifié
+        Role role = new Role();
+        role.setRole(roleType);
+        role.setUser(existingUser);
+
+        // Sauvegarde du rôle dans la base de données
+        roleRepository.save(role);
+    }
+
+
+
 }

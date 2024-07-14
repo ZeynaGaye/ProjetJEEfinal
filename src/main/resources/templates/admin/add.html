@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       layout:decorate="~{layout}">
+<head>
+    <title>Ajouter Administrateur</title>
+</head>
+<body>
+<h1>Ajouter Administrateur</h1>
+<form th:action="@{/administrateurs/add}" th:object="${administrateur}" method="post">
+    <div>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" th:field="*{nom}" />
+    </div>
+    <div>
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" th:field="*{prenom}" />
+    </div>
+    <div>
+        <label for="dateNaissance">Date de Naissance:</label>
+        <input type="date" id="dateNaissance" th:field="*{dateNaissance}" />
+    </div>
+    <div>
+        <label for="genre">Genre:</label>
+        <select id="genre" th:field="*{genre}">
+            <option value="HOMME">Homme</option>
+            <option value="FEMME">Femme</option>
+        </select>
+    </div>
+    <div>
+        <label for="adresse">Adresse:</label>
+        <input type="text" id="adresse" th:field="*{adresse}" />
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" />
+    </div>
+    <div>
+        <label for="motDePasse">Mot de Passe:</label>
+        <input type="password" id="motDePasse" th:field="*{motDePasse}" />
+    </div>
+    <div>
+        <button type="submit">Ajouter</button>
+    </div>
+</form>
+</body>
+</html>

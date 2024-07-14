@@ -23,6 +23,7 @@ public class Enseignant extends Users {
     @ManyToMany(mappedBy = "enseignants")
     private Set<Classe> Classes = new HashSet<>();
 
+
     public Enseignant() {}
 
     public Enseignant(String nom, String prenom, Date dateNaissance, Genre genre, String adresse, String email, String motDePasse, String matricule) {

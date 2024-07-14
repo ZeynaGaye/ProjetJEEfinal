@@ -6,5 +6,7 @@ import ucad.sn.master2.model.Administrateur;
 
 @Repository
 public interface AdministrateurRepository extends JpaRepository<Administrateur, Long> {
+    Administrateur findByEmail(String email);
     // Ajouter des méthodes spécifiques au besoin
+
 }

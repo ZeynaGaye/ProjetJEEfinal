@@ -15,4 +15,6 @@ public interface AdministrateurService {
     Administrateur getAdministrateurById(Long id);
 
     List<Administrateur> getAllAdministrateurs();
+
+    Administrateur getByEmail(String email);
 }

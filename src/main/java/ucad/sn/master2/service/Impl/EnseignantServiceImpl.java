@@ -74,8 +74,8 @@ public class EnseignantServiceImpl implements EnseignantService {
             Classe classe = classeOptional.get();
 
             // Ajoutez la classe à l'enseignant et l'enseignant à la classe
-            enseignant.setClasse(classe);
-            classe.getEnseignant().add(enseignant);
+            //enseignant.setClasse(classe);
+            //classe.getEnseignant().add(enseignant);
 
             enseignantRepository.save(enseignant);
             classeRepository.save(classe);

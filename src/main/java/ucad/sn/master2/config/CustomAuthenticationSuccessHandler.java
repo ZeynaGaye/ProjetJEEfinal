@@ -18,6 +18,8 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
+
+        //System.out.println("Roles: " + roles);
         if (roles.contains("ROLE_ADMIN")) {
             response.sendRedirect("/admin/dashboard");
         } else if (roles.contains("ROLE_ETUDIANT")) {
@@ -27,7 +29,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else if (roles.contains("ROLE_ENSEIGNANT_RESPONSABLE")) {
             response.sendRedirect("/enseignant-responsable/dashboard");
         } else {
-            response.sendRedirect("/default");
+            response.sendRedirect("/");
         }
     }
 }

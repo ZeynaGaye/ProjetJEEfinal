@@ -38,6 +38,8 @@ public class AdministrateurController {
         return new ResponseEntity<>(newAdministrateur, HttpStatus.CREATED);
     }
 
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Administrateur> updateAdministrateur(@PathVariable Long id, @RequestBody Administrateur administrateur) {
         Administrateur updatedAdministrateur = administrateurService.updateAdministrateur(id, administrateur);
