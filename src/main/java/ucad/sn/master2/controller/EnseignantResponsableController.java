@@ -29,24 +29,24 @@ public class EnseignantResponsableController {
     @Autowired
     private ClasseService classeService;
 
-    @GetMapping("/ajouter-enseignant")
-    public String afficherFormulaireAjouterEnseignant(Model model) {
-        model.addAttribute("enseignant", new Enseignant());
-        return "enseignant-responsable/ajouter-enseignant";
-    }
+//    @GetMapping("/ajouter-enseignant")
+//    public String afficherFormulaireAjouterEnseignant(Model model) {
+//        model.addAttribute("enseignant", new Enseignant());
+//        return "enseignant-responsable/ajouter-enseignant";
+//    }
 
-    @PostMapping("/ajouter-enseignant")
-    public String ajouterEnseignant(@ModelAttribute Enseignant enseignant) {
-        enseignantService.saveEnseignant(enseignant);
-        return "redirect:/enseignant-responsable/liste-enseignants";
-    }
-
-    @GetMapping("/liste-enseignants")
-    public String listeEnseignants(Model model) {
-        List<Enseignant> enseignants = enseignantService.getAllEnseignants();
-        model.addAttribute("enseignants", enseignants);
-        return "enseignant-responsable/liste-enseignants";
-    }
+//    @PostMapping("/ajouter-enseignant")
+//    public String ajouterEnseignant(@ModelAttribute Enseignant enseignant) {
+//        enseignantService.saveEnseignant(enseignant);
+//        return "redirect:/enseignant-responsable/liste-enseignants";
+//    }
+//
+//    @GetMapping("/liste-enseignants")
+//    public String listeEnseignants(Model model) {
+//        List<Enseignant> enseignants = enseignantService.getAllEnseignants();
+//        model.addAttribute("enseignants", enseignants);
+//        return "enseignant-responsable/liste-enseignants";
+//    }
 
     @GetMapping("/affecter-enseignant")
     public String afficherFormulaireAffecterEnseignant(Model model) {

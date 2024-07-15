@@ -12,12 +12,12 @@ public class ProjetJee2024FinalApplication {
 
 
 
-    //private final InsertionAdministrateur insertionAdministrateur;
+   // private final InsertionAdministrateur insertionAdministrateur;
 
-   // @Autowired
-   // public ProjetJee2024FinalApplication(InsertionAdministrateur insertionAdministrateur) {
-      //  this.insertionAdministrateur = insertionAdministrateur;
-   // }
+//    @Autowired
+//    public ProjetJee2024FinalApplication(InsertionAdministrateur insertionAdministrateur) {
+//        this.insertionAdministrateur = insertionAdministrateur;
+//    }
 
 
 

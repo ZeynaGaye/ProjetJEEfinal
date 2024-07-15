@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tableau de bord administrateur</title>
+  <title>Admin Dashboard</title>
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     body {
@@ -52,7 +52,6 @@
     }
     .section {
       margin-bottom: 20px;
-      text-align: center;
     }
     .section h3 {
       margin-top: 0;
@@ -63,16 +62,11 @@
       border-radius: 5px;
       margin-bottom: 10px;
     }
-    .card img {
-      width: 100%; /* Pour occuper toute la largeur */
-      height: auto;
-      border-radius: 5px; /* Ajout de bord arrondi si nécessaire */
-    }
   </style>
 </head>
 <body>
 <header>
-  <h1>Tableau de bord administrateur</h1>
+  <h1>Admin Dashboard</h1>
 </header>
 
 <nav>
@@ -81,19 +75,11 @@
     <li><a href="/ajouter-enseignant">Ajouter enseignant</a></li>
     <li><a href="/liste-etudiants">Liste des étudiants</a></li>
     <li><a href="/liste-enseignants">Liste des enseignants</a></li>
-    <!-- Ajoutez d'autres liens de navigation si nécessaire -->
+    <!-- Add more navigation links as needed -->
   </ul>
 </nav>
 
 <div class="container">
-  <section class="section">
-    <div class="card">
-      <a href="/ajouter-etudiant" class="btn">
-        <img src="../../static/uploader/student-admin.jpg" alt="Image d'étudiant" />
-      </a>
-    </div>
-  </section>
-
   <section class="section">
     <h2>Bienvenue, Administrateur</h2>
     <p>Utilisez le menu pour gérer les étudiants, les enseignants, et d'autres fonctionnalités de l'application.</p>
@@ -107,7 +93,7 @@
     <div class="card">
       <p><strong>Nombre d'enseignants :</strong> 30</p>
     </div>
-    <!-- Ajoutez plus de cartes de statistiques si nécessaire -->
+    <!-- Add more statistics cards as needed -->
   </section>
 
   <section class="section">
@@ -118,7 +104,7 @@
     <div class="card">
       <a href="/ajouter-enseignant" class="btn">Ajouter un nouvel enseignant</a>
     </div>
-    <!-- Ajoutez plus de cartes d'actions rapides si nécessaire -->
+    <!-- Add more action cards as needed -->
   </section>
 </div>
 </body>
