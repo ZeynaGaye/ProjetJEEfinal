@@ -30,9 +30,7 @@ public class Users {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Role> roles;
 
-    @ManyToOne
-    @JoinColumn(name = "classe_id")
-    private Classe classe;
+
 
     public Users() {}
 
@@ -120,11 +118,5 @@ public class Users {
         this.roles = roles;
     }
 
-    public Classe getClasse() {
-        return classe;
-    }
 
-    public void setClasse(Classe classe) {
-        this.classe = classe;
-    }
 }

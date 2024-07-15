@@ -1,6 +1,7 @@
 package ucad.sn.master2.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ucad.sn.master2.model.Classe;
 import ucad.sn.master2.model.Enseignant;
@@ -18,12 +19,14 @@ public class EnseignantServiceImpl implements EnseignantService {
 
     @Autowired
     private EnseignantRepository enseignantRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     private ClasseRepository classeRepository;
     @Autowired
-    public EnseignantServiceImpl(EnseignantRepository enseignantRepository) {
+    public EnseignantServiceImpl(EnseignantRepository enseignantRepository, PasswordEncoder passwordEncoder) {
         this.enseignantRepository = enseignantRepository;
+        this.passwordEncoder = passwordEncoder;
     }
     public Enseignant ajouterEnseignant(Enseignant enseignant) {
         return enseignantRepository.save(enseignant);
@@ -35,6 +38,9 @@ public class EnseignantServiceImpl implements EnseignantService {
 
     @Override
     public Enseignant saveEnseignant(Enseignant enseignant) {
+
+        enseignant.setMotDePasse(passwordEncoder.encode(enseignant.getMotDePasse()));
+
         return enseignantRepository.save(enseignant);
     }
 
