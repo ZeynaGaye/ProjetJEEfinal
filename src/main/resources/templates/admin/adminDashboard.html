@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Tableau de bord administrateur</title>
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     body {
@@ -52,6 +52,7 @@
     }
     .section {
       margin-bottom: 20px;
+      text-align: center;
     }
     .section h3 {
       margin-top: 0;
@@ -62,24 +63,37 @@
       border-radius: 5px;
       margin-bottom: 10px;
     }
+    .card img {
+      width: 100%; /* Pour occuper toute la largeur */
+      height: auto;
+      border-radius: 5px; /* Ajout de bord arrondi si nécessaire */
+    }
   </style>
 </head>
 <body>
 <header>
-  <h1>Admin Dashboard</h1>
+  <h1>Tableau de bord administrateur</h1>
 </header>
 
 <nav>
   <ul>
-    <li><a href="/ajouter-etudiant">Ajouter étudiant</a></li>
+    <li><a href="/etudiants/add">Ajouter étudiant</a></li>
     <li><a href="/ajouter-enseignant">Ajouter enseignant</a></li>
-    <li><a href="/liste-etudiants">Liste des étudiants</a></li>
+    <li><a href="/etudiants/liste">Liste des étudiants</a></li>
     <li><a href="/liste-enseignants">Liste des enseignants</a></li>
-    <!-- Add more navigation links as needed -->
+    <!-- Ajoutez d'autres liens de navigation si nécessaire -->
   </ul>
 </nav>
 
 <div class="container">
+  <section class="section">
+    <div class="card">
+      <a href="/ajouter-etudiant" class="btn">
+        <img src="../../static/uploader/student-admin.jpg" alt="Image d'étudiant" />
+      </a>
+    </div>
+  </section>
+
   <section class="section">
     <h2>Bienvenue, Administrateur</h2>
     <p>Utilisez le menu pour gérer les étudiants, les enseignants, et d'autres fonctionnalités de l'application.</p>
@@ -93,18 +107,18 @@
     <div class="card">
       <p><strong>Nombre d'enseignants :</strong> 30</p>
     </div>
-    <!-- Add more statistics cards as needed -->
+    <!-- Ajoutez plus de cartes de statistiques si nécessaire -->
   </section>
 
   <section class="section">
     <h3>Actions Rapides</h3>
     <div class="card">
-      <a href="/ajouter-etudiant" class="btn">Ajouter un nouvel étudiant</a>
+      <a href="/etudiants/add" class="btn">Ajouter un nouvel étudiant</a>
     </div>
     <div class="card">
       <a href="/ajouter-enseignant" class="btn">Ajouter un nouvel enseignant</a>
     </div>
-    <!-- Add more action cards as needed -->
+    <!-- Ajoutez plus de cartes d'actions rapides si nécessaire -->
   </section>
 </div>
 </body>

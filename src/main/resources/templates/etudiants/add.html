@@ -102,10 +102,10 @@
         </div>
         <div>
             <label for="classe">Classe :</label>
-            <select id="classe" th:field="*{classe}" required>
+            <select id="classe" th:field="*{classe.id}" required>
                 <option value="">Sélectionnez une classe</option>
                 <option th:each="classe : ${classes}"
-                        th:value="${classe}"
+                        th:value="${classe.id}"
                         th:text="${classe.nom} + ' (' + ${classe.description} + ')'"
                 ></option>
             </select>

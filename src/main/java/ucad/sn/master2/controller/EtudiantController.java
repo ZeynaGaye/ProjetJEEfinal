@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ucad.sn.master2.model.Classe;
 import ucad.sn.master2.model.Etudiant;
 import ucad.sn.master2.service.ClasseService;
 import ucad.sn.master2.service.EtudiantService;
@@ -35,7 +36,7 @@ public class EtudiantController {
     public String showAddEtudiantForm(Model model) {
         model.addAttribute("etudiant", new Etudiant());
         model.addAttribute("classes", classeService.trouverToutesLesClasses());
-        return "ajouter-etudiant";
+        return "etudiants/add";
     }
 
     @PostMapping("/save")
@@ -56,9 +57,26 @@ public class EtudiantController {
 
     @PostMapping("/update/{id}")
     public String updateEtudiant(@PathVariable Long id, @ModelAttribute Etudiant etudiant) {
+        // Récupérer l'objet Classe à partir de l'ID fourni dans l'étudiant
+        Long classeId = etudiant.getClasse().getId(); // Supposons que getId() retourne l'ID de la classe
+
+        Classe classe = classeService.getClasseById(classeId); // Méthode hypothétique pour récupérer la classe par ID
+
+        // Vérifier si la classe est trouvée et l'assigner à l'étudiant
+        if (classe != null) {
+            etudiant.setClasse(classe);
+        } else {
+
+
+            return "redirect:/error-page";
+        }
+
+        // Mettre à jour l'étudiant avec la nouvelle classe
         etudiantService.updateEtudiant(id, etudiant);
+
         return "redirect:/etudiants";
     }
+
 
     @GetMapping("/delete/{id}")
     public String deleteEtudiant(@PathVariable Long id) {
