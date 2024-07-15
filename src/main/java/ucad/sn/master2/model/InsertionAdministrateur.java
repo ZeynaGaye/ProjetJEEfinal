@@ -12,32 +12,32 @@ import java.util.Date;
 
 @Component
 public class InsertionAdministrateur {
-    //private final AdministrateurService administrateurService;
-    // private final RoleService roleService;
-
-    // @Autowired
-    // public InsertionAdministrateur(AdministrateurService administrateurService, RoleService roleService) {
-        //  this.administrateurService = administrateurService;
-        // this.roleService = roleService;
-        // }
-
-  //  public void insererAdministrateur() {
-        // Création d'un administrateur
-        //Administrateur administrateur = new Administrateur();
-    //administrateur.setNom("Seck");
-    //administrateur.setPrenom("Fatima");
-    //administrateur.setDateNaissance(new Date()); // Exemple de date de naissance
-    // administrateur.setGenre(Genre.FEMININ); // Exemple de genre
-    // administrateur.setAdresse("Bargny");
-    //administrateur.setEmail("fa@gmail.com");
-    //administrateur.setMotDePasse("fafa");
-
-        // Enregistrer l'administrateur
-    //Administrateur nouveauAdministrateur = administrateurService.saveAdministrateur(administrateur);
-
-        // Associer le rôle d'administrateur à l'utilisateur
-    //roleService.addRoleToUser(nouveauAdministrateur, RoleType.ADMINISTRATEUR);
-
-    //System.out.println("Nouvel administrateur ajouté : " + nouveauAdministrateur);
-    //}
+//    private final AdministrateurService administrateurService;
+//     private final RoleService roleService;
+//
+//     @Autowired
+//     public InsertionAdministrateur(AdministrateurService administrateurService, RoleService roleService) {
+//          this.administrateurService = administrateurService;
+//         this.roleService = roleService;
+//         }
+//
+//    public void insererAdministrateur() {
+//        // Création d'un administrateur
+//        Administrateur administrateur = new Administrateur();
+//    administrateur.setNom("Gaye");
+//    administrateur.setPrenom("chouchou");
+//    administrateur.setDateNaissance(new Date()); // Exemple de date de naissance
+//     administrateur.setGenre(Genre.FEMININ); // Exemple de genre
+//     administrateur.setAdresse("sipres");
+//    administrateur.setEmail("nata@gmail.com");
+//    administrateur.setMotDePasse("1234");
+//
+//        // Enregistrer l'administrateur
+//    Administrateur nouveauAdministrateur = administrateurService.saveAdministrateur(administrateur);
+//
+//        // Associer le rôle d'administrateur à l'utilisateur
+//    roleService.addRoleToUser(nouveauAdministrateur, RoleType.ADMINISTRATEUR);
+//
+//    System.out.println("Nouvel administrateur ajouté : " + nouveauAdministrateur);
+//    }
 }

@@ -10,7 +10,7 @@ import ucad.sn.master2.service.AdministrateurService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/administrateurs")
+@RequestMapping("/admin/administrateurs")
 public class AdministrateurController {
 
     private final AdministrateurService administrateurService;

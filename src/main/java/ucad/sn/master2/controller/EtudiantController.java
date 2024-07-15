@@ -35,7 +35,7 @@ public class EtudiantController {
     public String showAddEtudiantForm(Model model) {
         model.addAttribute("etudiant", new Etudiant());
         model.addAttribute("classes", classeService.trouverToutesLesClasses());
-        return "etudiants/add";
+        return "ajouter-etudiant";
     }
 
     @PostMapping("/save")
