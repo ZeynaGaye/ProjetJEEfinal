@@ -1,14 +1,18 @@
 package ucad.sn.master2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ucad.sn.master2.model.Classe;
 import ucad.sn.master2.model.Etudiant;
+import ucad.sn.master2.model.Ressource;
 import ucad.sn.master2.service.ClasseService;
 import ucad.sn.master2.service.EtudiantService;
+import ucad.sn.master2.service.RessourceService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -16,13 +20,17 @@ import java.util.List;
 public class EtudiantController {
 
     private final EtudiantService etudiantService;
+    @Autowired
+    private RessourceService ressourceService;
 
     private  final  ClasseService classeService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public EtudiantController(EtudiantService etudiantService, ClasseService classeService) {
+    public EtudiantController(EtudiantService etudiantService, ClasseService classeService, PasswordEncoder passwordEncoder) {
         this.etudiantService = etudiantService;
         this.classeService = classeService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping
@@ -78,9 +86,48 @@ public class EtudiantController {
     }
 
 
+    // Méthode pour afficher les ressources de la classe de l'étudiant
+    @GetMapping("/classe")
+    public String getRessourcesByClasse(Principal principal, Model model) {
+        // Récupérer l'utilisateur connecté (étudiant)
+        String email = principal.getName();
+        Etudiant etudiant = (Etudiant) etudiantService.findByEmail(email);
+
+        // Récupérer les ressources de la classe de l'étudiant
+        List<Ressource> ressources = ressourceService.getRessourcesByClasseId(etudiant.getClasse().getId());
+
+        model.addAttribute("ressources", ressources);
+        return "ressource/list-ressources"; // Vue HTML pour afficher les ressources
+    }
+
     @GetMapping("/delete/{id}")
     public String deleteEtudiant(@PathVariable Long id) {
         etudiantService.deleteEtudiant(id);
         return "redirect:/etudiants";
+    }
+
+    @PostMapping("/update-password")
+    public String updatePassword(@RequestParam("currentPassword") String currentPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 @RequestParam("confirmPassword") String confirmPassword,
+                                 Principal principal, Model model) {
+        String email = principal.getName();
+        Etudiant etudiant = (Etudiant) etudiantService.findByEmail(email);
+
+        // Accéder aux méthodes getPassword et setPassword à travers l'instance d'Etudiant
+        if (!passwordEncoder.matches(currentPassword, etudiant.getPassword())) {
+            model.addAttribute("error", "Mot de passe actuel incorrect");
+            return "etudiants/modifier-mot-de-passe";
+        }
+
+        if (!newPassword.equals(confirmPassword)) {
+            model.addAttribute("error", "Les nouveaux mots de passe ne correspondent pas");
+            return "etudiants/modifier-mot-de-passe";
+        }
+
+        etudiant.setPassword(passwordEncoder.encode(newPassword));
+        etudiantService.updateEtudiant(etudiant.getId(), etudiant);
+
+        return "redirect:/etudiants/etudiantDashboard";
     }
 }

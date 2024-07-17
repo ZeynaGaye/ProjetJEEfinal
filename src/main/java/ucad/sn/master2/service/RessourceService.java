@@ -20,4 +20,6 @@ public interface RessourceService {
 
     // Méthode pour supprimer une ressource par son identifiant
     void deleteRessource(Long id);
+
+    List<Ressource> getRessourcesByClasseId(Long id);
 }

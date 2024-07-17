@@ -15,4 +15,8 @@ public interface EtudiantService {
     Etudiant getEtudiantById(Long id);
 
     List<Etudiant> getAllEtudiants();
+
+    Object findByEmail(String email);
+
+   // void createPasswordResetTokenForUser(Etudiant etudiant, String token);
 }

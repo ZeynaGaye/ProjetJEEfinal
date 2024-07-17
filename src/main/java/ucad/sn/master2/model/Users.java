@@ -119,4 +119,11 @@ public class Users {
     }
 
 
+    public String getPassword() {
+        return  motDePasse;
+    }
+
+    public void setPassword(String password) {
+        this.motDePasse= password;
+    }
 }

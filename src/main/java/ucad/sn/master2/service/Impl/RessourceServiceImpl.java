@@ -48,4 +48,9 @@ public class RessourceServiceImpl implements RessourceService {
     public void deleteRessource(Long id) {
         ressourceRepository.deleteById(id);
     }
+
+    @Override
+    public List<Ressource> getRessourcesByClasseId(Long id) {
+        return ressourceRepository.findByClasseId(id);
+    }
 }

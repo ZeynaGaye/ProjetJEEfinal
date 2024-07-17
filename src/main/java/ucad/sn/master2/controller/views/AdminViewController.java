@@ -10,22 +10,29 @@ public class AdminViewController {
     public String adminDashboard() {
         return "admin/adminDashboard";
     }
-    @GetMapping("/ajouter-etudiants")
-    public String ajouterEtudiant() {
-        return "ajouter-etudiant";
-    }
+
     @GetMapping("/ajouter-enseignant")
     public String ajouterEnseignant() {
         return "ajouter-enseignant";
     }
 
-    @GetMapping("/liste-etudiants")
+    @GetMapping("/etudiants/liste")
     public String listeEtudiants() {
-        return "liste-etudiants";
+        return "etudiants/liste";
     }
 
     @GetMapping("/liste-enseignants")
     public String listeEnseignants() {
         return "liste-enseignants";
     }
+
+
+    @GetMapping("/deconnexionadmin")
+    public String deconnexionadmin() {
+        // Handle logout logic
+        return "redirect:/logout";
+    }
+
+
+
 }

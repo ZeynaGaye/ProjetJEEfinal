@@ -9,6 +9,9 @@ public class Ressource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "classe_id")
+    private Classe classe;
 
     private String nom;
     private String description;

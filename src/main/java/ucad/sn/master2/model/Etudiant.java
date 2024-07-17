@@ -40,4 +40,7 @@ public class Etudiant extends Users {
     public void setClasse(Classe classe) {
         this.classe = classe;
     }
+
+
+
 }
