@@ -13,4 +13,6 @@ public interface EnseignantResponsableService {
     void addAnnonce(Annonce annonce);
 
     void addModule(Module module);
+
+//    int countResponsibleTeachers();
 }

@@ -15,4 +15,6 @@ public interface EtudiantService {
     Etudiant getEtudiantById(Long id);
 
     List<Etudiant> getAllEtudiants();
+
+//    long countStudents();
 }

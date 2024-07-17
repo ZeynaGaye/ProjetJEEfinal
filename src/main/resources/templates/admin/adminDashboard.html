@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tableau de bord administrateur</title>
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,8 +17,27 @@
     header {
       background-color: #007bff;
       color: white;
-      padding: 10px 0;
-      text-align: center;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+    }
+    header img {
+      height: 60px;
+      margin-right: 20px;
+      margin-top: 0;
+      margin-bottom: 0;
+      margin-left:0;
+    }
+    header h1 {
+      font-size: 25px;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: scrollText 10s linear infinite; /* Animation de défilement */
+    }
+    @keyframes scrollText {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
     nav {
       background-color: #343a40;
@@ -29,16 +50,35 @@
       text-align: center;
     }
     nav ul li {
-      display: inline;
+      display: inline-block;
       margin: 0 15px;
+      position: relative;
     }
     nav ul li a {
       color: white;
       text-decoration: none;
       font-size: 16px;
+      display: inline-block;
+      padding: 5px;
     }
     nav ul li a:hover {
-      text-decoration: underline;
+      text-decoration: none;
+    }
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      background-color: #343a40;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      z-index: 1000;
+    }
+    nav ul li ul li {
+      display: block;
+      margin: 0;
+    }
+    nav ul li:hover ul {
+      display: block;
     }
     .container {
       max-width: 1200px;
@@ -46,9 +86,6 @@
       padding: 20px;
       background-color: white;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .container h2 {
-      margin-top: 0;
     }
     .section {
       margin-bottom: 20px;
@@ -58,68 +95,125 @@
       margin-top: 0;
     }
     .card {
-      background-color: #f8f9fa;
-      padding: 20px;
-      border-radius: 5px;
-      margin-bottom: 10px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+      margin-bottom: 20px;
     }
-    .card img {
-      width: 100%; /* Pour occuper toute la largeur */
-      height: auto;
-      border-radius: 5px; /* Ajout de bord arrondi si nécessaire */
+    .card:hover {
+      transform: scale(1.02);
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .card-title {
+      color: #0056b3;
+      font-size: 1.25rem;
+      margin-bottom: 15px;
+    }
+    footer {
+      text-align: center;
+      background-color: #343a40;
+      color: white;
+      padding: 10px;
     }
   </style>
 </head>
 <body>
 <header>
-  <h1>Tableau de bord administrateur</h1>
+  <img src="../../static/uploader/OIP.jpg" alt="Logo de votre site">
+  <h1>Plate-Forme de partage de ressources de la section informatique</h1>
 </header>
 
 <nav>
   <ul>
-    <li><a href="/ajouter-etudiant">Ajouter étudiant</a></li>
-    <li><a href="/ajouter-enseignant">Ajouter enseignant</a></li>
-    <li><a href="/liste-etudiants">Liste des étudiants</a></li>
-    <li><a href="/liste-enseignants">Liste des enseignants</a></li>
-    <!-- Ajoutez d'autres liens de navigation si nécessaire -->
+    <li>
+      <a href="#">Ajouter</a>
+      <ul>
+        <li><a href="/admin/ajouter-etudiant">Ajouter étudiant</a></li>
+        <li><a href="/admin/ajouter-enseignant">Ajouter enseignant</a></li>
+        <li><a href="/admin/ajouter-classe">Ajouter classe</a></li>
+      </ul>
+    </li>
+    <li><a href="/admin/affecter-responsable">Affecter responsable</a></li>
+    <li>
+      <a href="#">Lister</a>
+      <ul>
+        <li><a href="/admin/liste-etudiants">Liste des étudiants</a></li>
+        <li><a href="/admin/liste-enseignants">Liste des enseignants</a></li>
+        <li><a href="/admin/liste-classes">Liste des classes</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
 <div class="container">
   <section class="section">
     <div class="card">
-      <a href="/ajouter-etudiant" class="btn">
-        <img src="../../static/uploader/student-admin.jpg" alt="Image d'étudiant" />
-      </a>
+      <img class="btn" src="../../static/uploader/student-admin.jpg" alt="Image d'étudiant" />
     </div>
   </section>
 
   <section class="section">
     <h2>Bienvenue, Administrateur</h2>
-    <p>Utilisez le menu pour gérer les étudiants, les enseignants, et d'autres fonctionnalités de l'application.</p>
+
   </section>
 
   <section class="section">
     <h3>Statistiques</h3>
-    <div class="card">
-      <p><strong>Nombre d'étudiants :</strong> 150</p>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-title"><strong>Nombre d'étudiants :</strong></p>
+            <p>150</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-title"><strong>Nombre d'enseignants :</strong></p>
+            <p>30</p>
+          </div>
+        </div>
+      </div>
+      <!-- Ajoutez plus de cartes de statistiques si nécessaire -->
     </div>
-    <div class="card">
-      <p><strong>Nombre d'enseignants :</strong> 30</p>
-    </div>
-    <!-- Ajoutez plus de cartes de statistiques si nécessaire -->
   </section>
 
   <section class="section">
     <h3>Actions Rapides</h3>
-    <div class="card">
-      <a href="/ajouter-etudiant" class="btn">Ajouter un nouvel étudiant</a>
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <a href="/admin/ajouter-etudiant" class="btn btn-primary">Ajouter un nouvel étudiant</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <a href="/admin/ajouter-enseignant" class="btn btn-primary">Ajouter un nouvel enseignant</a>
+          </div>
+        </div>
+      </div>
+      <!-- Ajoutez plus de cartes d'actions rapides si nécessaire -->
     </div>
-    <div class="card">
-      <a href="/ajouter-enseignant" class="btn">Ajouter un nouvel enseignant</a>
-    </div>
-    <!-- Ajoutez plus de cartes d'actions rapides si nécessaire -->
   </section>
 </div>
+<footer>
+  <p>&copy; 2024 SectionInformatique. Tous droits réservés.</p>
+</footer>
+
+<script>
+  document.getElementById('user-menu').addEventListener('click', function(e) {
+    e.preventDefault();
+    const dropdown = document.getElementById('user-dropdown');
+    dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'block' : 'none';
+  });
+</script>
 </body>
 </html>

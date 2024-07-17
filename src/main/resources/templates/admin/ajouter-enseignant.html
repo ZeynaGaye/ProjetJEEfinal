@@ -1,50 +1,129 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Ajouter Enseignant</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: grid;
+            gap: 10px;
+        }
+        .form-container label {
+            font-weight: bold;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="password"],
+        .form-container input[type="email"],
+        .form-container input[type="date"],
+        .form-container select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-container select {
+            width: 100%;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+        .form-container a {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .flex > div {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h2 class="mt-5 mb-3">Ajouter Enseignant</h2>
-    <form th:action="@{/enseignant-responsable/ajouter-enseignant}" th:object="${enseignant}" method="post">
-        <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" class="form-control" id="nom" th:field="${enseignant.nom}" required>
+<div class="form-container">
+    <h1>Ajouter Enseignant</h1>
+    <form th:action="@{/admin/ajouter-enseignant}" th:object="${enseignant}" method="post">
+        <div class="flex">
+            <div>
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" th:field="*{nom}" required />
+            </div>
+            <div>
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" th:field="*{prenom}" required />
+            </div>
         </div>
-        <div class="form-group">
-            <label for="prenom">Prénom</label>
-            <input type="text" class="form-control" id="prenom" th:field="${enseignant.prenom}" required>
+        <div class="flex">
+            <div>
+                <label for="dateNaissance">Date de Naissance :</label>
+                <input type="date" id="dateNaissance" th:field="*{dateNaissance}" required />
+            </div>
+            <div>
+                <label for="genre">Genre :</label>
+                <select id="genre" th:field="*{genre}">
+                    <option value="HOMME">Homme</option>
+                    <option value="FEMME">Femme</option>
+                </select>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="dateNaissance">Date de Naissance</label>
-            <input type="date" class="form-control" id="dateNaissance" th:field="${enseignant.dateNaissance}" required>
+        <div class="flex">
+            <div>
+                <label for="adresse">Adresse :</label>
+                <input type="text" id="adresse" th:field="*{adresse}" required />
+            </div>
+            <div>
+                <label for="email">Email :</label>
+                <input type="email" id="email" th:field="*{email}" required />
+            </div>
         </div>
-        <div class="form-group">
-            <label for="genre">Genre</label>
-            <select class="form-control" id="genre" th:field="${enseignant.genre}">
-                <option value="HOMME">Homme</option>
-                <option value="FEMME">Femme</option>
-            </select>
+        <div class="flex">
+            <div>
+                <label for="motDePasse">Mot de Passe :</label>
+                <input type="password" id="motDePasse" th:field="*{motDePasse}" required />
+            </div>
+            <div>
+                <label for="matricule">Matricule :</label>
+                <input type="text" id="matricule" th:field="*{matricule}" required />
+            </div>
         </div>
-        <div class="form-group">
-            <label for="adresse">Adresse</label>
-            <input type="text" class="form-control" id="adresse" th:field="${enseignant.adresse}" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" th:field="${enseignant.email}" required>
-        </div>
-        <div class="form-group">
-            <label for="motDePasse">Mot de Passe</label>
-            <input type="password" class="form-control" id="motDePasse" th:field="${enseignant.motDePasse}" required>
-        </div>
-        <div class="form-group">
-            <label for="matricule">Matricule</label>
-            <input type="text" class="form-control" id="matricule" th:field="${enseignant.matricule}" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <button type="submit">Ajouter</button>
     </form>
+    <a th:href="@{/adminDashboard}">Retour à la liste</a>
 </div>
 </body>
 </html>

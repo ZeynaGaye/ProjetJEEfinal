@@ -20,31 +20,31 @@ public class EnseignantController {
         this.enseignantService = enseignantService;
     }
 
-    @GetMapping
+    @GetMapping("getAllEnseignants")
     public ResponseEntity<List<Enseignant>> getAllEnseignants() {
         List<Enseignant> enseignants = enseignantService.getAllEnseignants();
         return new ResponseEntity<>(enseignants, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{getEnseignantById}")
     public ResponseEntity<Enseignant> getEnseignantById(@PathVariable Long id) {
         Enseignant enseignant = enseignantService.getEnseignantById(id);
         return new ResponseEntity<>(enseignant, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("addEnseignant")
     public ResponseEntity<Enseignant> addEnseignant(@RequestBody Enseignant enseignant) {
         Enseignant newEnseignant = enseignantService.saveEnseignant(enseignant);
         return new ResponseEntity<>(newEnseignant, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{updateEnseignan}")
     public ResponseEntity<Enseignant> updateEnseignant(@PathVariable Long id, @RequestBody Enseignant enseignant) {
         Enseignant updatedEnseignant = enseignantService.updateEnseignant(id, enseignant);
         return new ResponseEntity<>(updatedEnseignant, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{deleteEnseignant}")
     public ResponseEntity<Void> deleteEnseignant(@PathVariable Long id) {
         enseignantService.deleteEnseignant(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

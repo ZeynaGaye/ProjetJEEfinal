@@ -50,4 +50,7 @@ public class EtudiantServiceImpl implements EtudiantService {
     public List<Etudiant> getAllEtudiants() {
         return etudiantRepository.findAll();
     }
+
+
+
 }

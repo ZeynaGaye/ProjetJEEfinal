@@ -19,6 +19,8 @@ public interface EnseignantService {
 
     List<Enseignant> getAllEnseignants();
 
+//    long countTeachers();
+
 
     //     static void affecterEnseignantClasse(Long enseignantId, Long classeId){
 //         Enseignant enseignant = EnseignantRepository.findById(enseignantId).orElseThrow(() -> new IllegalArgumentException("Enseignant non trouvé"));

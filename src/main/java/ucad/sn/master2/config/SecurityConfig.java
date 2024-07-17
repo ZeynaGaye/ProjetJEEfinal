@@ -55,6 +55,8 @@ public class SecurityConfig {
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/administrateurs/**").hasRole("ADMINISTRATEUR")
+                        .requestMatchers("/enseignant/**").hasRole("ADMINISTRATEUR")
+                        .requestMatchers("/etudiant/**").hasRole("ADMINISTRATEUR")
                         .requestMatchers("/etudiant/**").hasRole("ETUDIANT")
                         .requestMatchers("/enseignant/**").hasRole("ENSEIGNANT")
                         .requestMatchers("/enseignant-responsable/**").hasRole("ENSEIGNANT_RESPONSABLE")

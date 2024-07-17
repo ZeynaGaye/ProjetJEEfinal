@@ -32,6 +32,7 @@
         .form-container input[type="text"],
         .form-container input[type="password"],
         .form-container input[type="email"],
+        .form-container input[type="date"],
         .form-container select {
             width: calc(100% - 20px);
             padding: 10px;
@@ -63,52 +64,67 @@
         .form-container a:hover {
             text-decoration: underline;
         }
+        .flex {
+            display: flex;
+            gap: 20px;
+        }
+        .flex > div {
+            flex: 1;
+        }
     </style>
 </head>
 <body>
 <div class="form-container">
     <h1>Ajouter un Étudiant</h1>
     <form th:action="@{/etudiants/save}" th:object="${etudiant}" method="post">
-        <div>
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" th:field="*{nom}" required />
+        <div class="flex">
+            <div>
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" th:field="*{nom}" required />
+            </div>
+            <div>
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" th:field="*{prenom}" required />
+            </div>
         </div>
-        <div>
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" th:field="*{prenom}" required />
+        <div class="flex">
+            <div>
+                <label for="genre">Genre :</label>
+                <select id="genre" th:field="*{genre}">
+                    <option value="MASCULIN">Masculin</option>
+                    <option value="FEMININ">Féminin</option>
+                </select>
+            </div>
+            <div>
+                <label for="adresse">Adresse :</label>
+                <input type="text" id="adresse" th:field="*{adresse}" required />
+            </div>
         </div>
-        <div>
-            <label for="genre">Genre :</label>
-            <select id="genre" th:field="*{genre}">
-                <option value="MASCULIN">Masculin</option>
-                <option value="FEMININ">Féminin</option>
-            </select>
+        <div class="flex">
+            <div>
+                <label for="email">Email :</label>
+                <input type="email" id="email" th:field="*{email}" required />
+            </div>
+            <div>
+                <label for="motDePasse">Mot de passe :</label>
+                <input type="password" id="motDePasse" th:field="*{motDePasse}" required />
+            </div>
         </div>
-        <div>
-            <label for="adresse">Adresse :</label>
-            <input type="text" id="adresse" th:field="*{adresse}" required />
-        </div>
-        <div>
-            <label for="email">Email :</label>
-            <input type="email" id="email" th:field="*{email}" required />
-        </div>
-        <div>
-            <label for="motDePasse">Mot de passe :</label>
-            <input type="password" id="motDePasse" th:field="*{motDePasse}" required />
-        </div>
-        <div>
-            <label for="numeroEtudiant">Numéro Étudiant :</label>
-            <input type="text" id="numeroEtudiant" th:field="*{numeroEtudiant}" required />
-        </div>
-        <div>
-            <label for="classe">Classe :</label>
-            <select id="classe" th:field="*{classe}" required>
-                <option value="">Sélectionnez une classe</option>
-                <option th:each="classe : ${classes}"
-                        th:value="${classe}"
-                        th:text="${classe.nom} + ' (' + ${classe.description} + ')'"
-                ></option>
-            </select>
+        <div class="flex">
+            <div>
+                <label for="numeroEtudiant">Numéro Étudiant :</label>
+                <input type="text" id="numeroEtudiant" th:field="*{numeroEtudiant}" required />
+            </div>
+            <div>
+                <label for="classe">Classe :</label>
+                <select id="classe" th:field="*{classe}" required>
+                    <option value="">Sélectionnez une classe</option>
+                    <option th:each="classe : ${classes}"
+                            th:value="${classe}"
+                            th:text="${classe.nom} + ' (' + ${classe.description} + ')'"
+                    ></option>
+                </select>
+            </div>
         </div>
         <div>
             <button type="submit">Enregistrer</button>
