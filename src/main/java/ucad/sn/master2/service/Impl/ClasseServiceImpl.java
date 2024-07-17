@@ -34,5 +34,11 @@ public class ClasseServiceImpl implements ClasseService {
         return classeRepository.findById(id);
     }
 
+    @Override
+    public Classe getClasseById(Long classeId) {
+        return classeRepository.findById(classeId)
+                .orElseThrow(() -> new RuntimeException("Classe non trouvée avec l'ID : " + classeId));
+    }
+
 
 }

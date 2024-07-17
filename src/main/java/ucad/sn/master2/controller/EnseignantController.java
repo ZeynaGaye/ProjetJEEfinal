@@ -49,4 +49,9 @@ public class EnseignantController {
         enseignantService.deleteEnseignant(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/enseignant/dashboard")
+    public String enseignantDashboard() {
+        return "enseignantDashboard"; // Fichier HTML dans src/main/resources/templates
+    }
 }

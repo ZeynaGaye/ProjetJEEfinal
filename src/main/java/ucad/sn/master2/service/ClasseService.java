@@ -10,5 +10,5 @@ public interface ClasseService {
     List<Classe> trouverToutesLesClasses();
     Optional<Classe> trouverClasseParId(Long id);
 
-    //long countClasses();
+    Classe getClasseById(Long classeId);
 }

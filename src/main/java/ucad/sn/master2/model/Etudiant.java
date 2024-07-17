@@ -8,15 +8,13 @@ import ucad.sn.master2.util.Genre;
 import java.util.Date;
 
 @Entity
-
 public class Etudiant extends Users {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private Long id ;
+
+    @Column(name = "numero_etudiant", unique = true) // Ajout d'une colonne unique pour le numéro d'étudiant
     private String numeroEtudiant;
 
     @ManyToOne
-    @JoinColumn(name = "classe_id")
+    @JoinColumn(name = "classe_id") // Référence vers la classe à laquelle l'étudiant est associé
     private Classe classe;
 
     public Etudiant() {}
