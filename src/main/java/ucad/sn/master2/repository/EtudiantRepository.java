@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
     Optional<Object> findByEmail(String email);
-    // Ajouter des méthodes spécifiques au besoin
+
 }

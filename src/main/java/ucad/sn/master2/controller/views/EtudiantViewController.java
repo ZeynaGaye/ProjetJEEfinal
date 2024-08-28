@@ -7,16 +7,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ucad.sn.master2.model.Etudiant;
+import ucad.sn.master2.model.Ressource;
 import ucad.sn.master2.service.EtudiantService;
-;
+import ucad.sn.master2.service.ModuleService;
+import ucad.sn.master2.service.RessourceService;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class EtudiantViewController {
     private final EtudiantService etudiantService;
+    private final ModuleService moduleService;
+    private final RessourceService ressourceService;
 
     @Autowired
-    public EtudiantViewController(EtudiantService etudiantService) {
+    public EtudiantViewController(EtudiantService etudiantService, ModuleService moduleService, RessourceService ressourceService) {
         this.etudiantService = etudiantService;
+        this.moduleService = moduleService;
+        this.ressourceService = ressourceService;
     }
 
     // @GetMapping("etudiants/etudiantDashboard")
@@ -42,11 +52,11 @@ public class EtudiantViewController {
     }
 
 
-    @GetMapping("/voir-cours")
-    public String voirCours(Model model) {
+    //@GetMapping("/voir-cours")
+   // public String voirCours(Model model) {
         // Add model attributes to list the courses
-        return "etudiants/voir-cours";
-    }
+        //return "etudiants/voir-cours";
+    //}
 
     @GetMapping("etudiants/modifier-mot-de-passe")
     public String modifierMotDePasse(Model model) {
@@ -69,5 +79,32 @@ public class EtudiantViewController {
     }
 
 
+
+    @GetMapping("/etudiants/voir-cours")
+    public String voirCours(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+
+        Etudiant etudiant = (Etudiant) etudiantService.findByEmail(email);
+
+        if (etudiant.getClasse() == null) {
+            model.addAttribute("errorMessage", "L'étudiant n'a pas de classe assignée.");
+            return "etudiants/voir-cours"; // Afficher un message d'erreur sur la même page
+        }
+
+        Long classeId = etudiant.getClasse().getId();
+
+        List<Module> modules = moduleService.getModulesForClasse(classeId);
+        model.addAttribute("modules", modules);
+
+        Map<Long, List<Ressource>> ressourcesParModule = new HashMap<>();
+        for (Module module : modules) {
+            List<Ressource> ressources = ressourceService.getRessourcesForModule(Long.valueOf(module.getName()));
+            ressourcesParModule.put(Long.valueOf(module.getName()), ressources);
+        }
+        model.addAttribute("ressourcesParModule", ressourcesParModule);
+
+        return "etudiants/voir-cours";
+    }
 
 }

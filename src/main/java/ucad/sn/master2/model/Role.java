@@ -10,7 +10,7 @@ public class Role {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column(unique = true)
     private RoleType role;
 
     @ManyToOne
@@ -25,6 +25,8 @@ public class Role {
         this.role = role;
         this.user = user;
     }
+
+
 
     // Getters and Setters
     public Long getId() {

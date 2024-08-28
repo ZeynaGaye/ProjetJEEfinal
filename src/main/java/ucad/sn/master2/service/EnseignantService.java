@@ -1,16 +1,27 @@
 package ucad.sn.master2.service;
 
+import jakarta.transaction.Transactional;
+import ucad.sn.master2.model.Annonce;
 import ucad.sn.master2.model.Enseignant;
+import ucad.sn.master2.util.RoleType;
 
 import java.util.List;
 
 public interface EnseignantService {
 
+
     static void affecterEnseignantClasse(Long enseignantId, Long classeId) {
     }
 
-    Enseignant saveEnseignant(Enseignant enseignant);
+    @Transactional
+    Enseignant ajouterEnseignant(Enseignant enseignant);
 
+    List<Enseignant> listeEnseignants();
+
+    Enseignant saveEnseignant(Enseignant enseignant, RoleType roleType);
+
+
+    Enseignant getEnseignantByEmail(String email);
     Enseignant updateEnseignant(Long id, Enseignant enseignant);
 
     void deleteEnseignant(Long id);
@@ -18,6 +29,15 @@ public interface EnseignantService {
     Enseignant getEnseignantById(Long id);
 
     List<Enseignant> getAllEnseignants();
+
+    Enseignant findByEmail(String email);
+    void creerAnnonce(Annonce annonce, String name);
+
+
+    void creerAnnonce(Annonce annonce);
+
+    //@Transactional
+   // void affecterEnseignantClasse(Long enseignantId, Long classeId);
 
 
     //     static void affecterEnseignantClasse(Long enseignantId, Long classeId){
@@ -28,5 +48,9 @@ public interface EnseignantService {
 //         ClasseRepository.save(classe);
 //         EnseignantRepository.save(enseignant);
 //     }
+
+
+
+
 }
 

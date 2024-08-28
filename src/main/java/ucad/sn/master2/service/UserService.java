@@ -1,5 +1,7 @@
 package ucad.sn.master2.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserCache;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import ucad.sn.master2.model.Users;
@@ -16,4 +18,6 @@ public interface UserService {
     void saveUser(Users userForm);
 
     Users loadUserByUsername(String email) throws UsernameNotFoundException;
+
+
 }

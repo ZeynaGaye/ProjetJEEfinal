@@ -71,22 +71,22 @@
   <form th:action="@{/etudiants/update/{id}(id=${etudiant.id})}" th:object="${etudiant}" method="post">
     <div>
       <label for="nom">Nom :</label>
-      <input type="text" id="nom" th:field="*{nom}" readonly  />
+      <input type="text" id="nom" th:field="*{nom}" required />
     </div>
     <div>
       <label for="prenom">Prénom :</label>
-      <input type="text" id="prenom" th:field="*{prenom}" readonly  />
+      <input type="text" id="prenom" th:field="*{prenom}" required />
     </div>
     <div>
       <label for="genre">Genre :</label>
-      <select id="genre" th:field="*{genre}" readonly >
+      <select id="genre" th:field="*{genre}">
         <option value="MASCULIN">Masculin</option>
-        <option value="FEMININ" >Féminin</option>
+        <option value="FEMININ">Féminin</option>
       </select>
     </div>
     <div>
       <label for="adresse">Adresse :</label>
-      <input type="text" id="adresse" th:field="*{adresse}" readonly  />
+      <input type="text" id="adresse" th:field="*{adresse}" required />
     </div>
     <div>
       <label for="email">Email :</label>
@@ -102,7 +102,7 @@
     </div>
     <div>
       <label for="classe">Classe :</label>
-      <select id="classe" th:field="*{classe}" required>
+      <select id="classe" th:field="*{classe.id}" required>
         <option value="">Sélectionnez une classe</option>
         <option th:each="classe : ${classes}"
                 th:value="${classe.id}"
@@ -114,7 +114,7 @@
       <button type="submit">Enregistrer</button>
     </div>
   </form>
-  <a th:href="@{/admin/liste}">Retour à la liste</a>
+  <a th:href="@{/templates/etudiants}">Retour à la liste</a>
 </div>
 </body>
 </html>

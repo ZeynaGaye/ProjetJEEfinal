@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ucad.sn.master2.model.Classe;
 import ucad.sn.master2.model.Enseignant;
 import ucad.sn.master2.model.Module;
@@ -14,6 +15,7 @@ import ucad.sn.master2.repository.EnseignantRepository;
 import ucad.sn.master2.repository.ModuleRepository;
 
 @Controller
+@RequestMapping("/modules")
 public class ModuleController {
 
     @Autowired
@@ -25,16 +27,16 @@ public class ModuleController {
     @Autowired
     private ClasseRepository classeRepository;
 
-    @GetMapping("/modules/add")
+    @GetMapping("/add")
     public String showAddModuleForm(Model model) {
-        model.addAttribute("moduleForm", new Module());
+        model.addAttribute("moduleform", new Module());
         model.addAttribute("enseignants", enseignantRepository.findAll());
         model.addAttribute("classes", classeRepository.findAll());
-        return "addModule";
+        return "module/add-module";
     }
 
-    @PostMapping("/modules/add")
-    public String addModule(@ModelAttribute("moduleForm") Module moduleForm, Long enseignantId, Long classeId) {
+    @PostMapping("/add")
+    public String addModule(@ModelAttribute("moduleform") Module moduleForm, Long enseignantId, Long classeId) {
         if (enseignantId != null) {
             Enseignant enseignant = enseignantRepository.findById(enseignantId)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid enseignant Id:" + enseignantId));

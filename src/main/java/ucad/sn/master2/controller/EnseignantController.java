@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ucad.sn.master2.model.Enseignant;
 import ucad.sn.master2.service.EnseignantService;
+import ucad.sn.master2.util.RoleType;
 
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class EnseignantController {
     }
 
     @PostMapping
-    public ResponseEntity<Enseignant> addEnseignant(@RequestBody Enseignant enseignant) {
-        Enseignant newEnseignant = enseignantService.saveEnseignant(enseignant);
+    public ResponseEntity<Enseignant> addEnseignant(@RequestBody Enseignant enseignant ,@RequestBody RoleType roleType) {
+        Enseignant newEnseignant = enseignantService.saveEnseignant(enseignant,roleType);
         return new ResponseEntity<>(newEnseignant, HttpStatus.CREATED);
     }
 
@@ -50,8 +51,5 @@ public class EnseignantController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/enseignant/dashboard")
-    public String enseignantDashboard() {
-        return "enseignantDashboard"; // Fichier HTML dans src/main/resources/templates
-    }
+
 }

@@ -3,6 +3,9 @@ package ucad.sn.master2.service.Impl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserCache;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,9 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+
+
 
     private final UserRepository userRepository;
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
@@ -74,4 +80,7 @@ public class UserServiceImpl implements UserService {
     public Users loadUserByUsername(String email) throws UsernameNotFoundException {
         return this.userRepository.findByEmail(email);
     }
+
+
+
 }

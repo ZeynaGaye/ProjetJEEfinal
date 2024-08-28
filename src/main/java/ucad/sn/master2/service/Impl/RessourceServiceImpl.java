@@ -2,6 +2,7 @@ package ucad.sn.master2.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ucad.sn.master2.model.Enseignant;
 import ucad.sn.master2.model.Ressource;
 import ucad.sn.master2.repository.RessourceRepository;
 import ucad.sn.master2.service.RessourceService;
@@ -53,4 +54,17 @@ public class RessourceServiceImpl implements RessourceService {
     public List<Ressource> getRessourcesByClasseId(Long id) {
         return ressourceRepository.findByClasseId(id);
     }
+
+    @Override
+    public List<Ressource> getRessourcesByEnseignant(Enseignant enseignant) {
+        return ressourceRepository.findByEnseignant(enseignant);
+
+    }
+    @Override
+    public List<Ressource> getRessourcesForModule(Long moduleId) {
+        return ressourceRepository.findByModuleId(moduleId);
+    }
+
+    // Méthode pour récupérer les ressources d'un enseignant spécifique
+
 }

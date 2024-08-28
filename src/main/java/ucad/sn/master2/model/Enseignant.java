@@ -1,20 +1,19 @@
 package ucad.sn.master2.model;
 
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import ucad.sn.master2.repository.EnseignantRepository;
 import ucad.sn.master2.util.Genre;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import ucad.sn.master2.util.RoleType;
+
+import java.util.*;
 
 @Entity
 @Data
 @AllArgsConstructor
 public class Enseignant extends Users {
+
     private String matricule;
 
     @OneToMany(mappedBy = "enseignant")
@@ -23,13 +22,26 @@ public class Enseignant extends Users {
     @ManyToMany(mappedBy = "enseignants")
     private Set<Classe> Classes = new HashSet<>();
 
+    @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Annonce> annonces = new ArrayList<>();
+
 
     public Enseignant() {}
 
     public Enseignant(String nom, String prenom, Date dateNaissance, Genre genre, String adresse, String email, String motDePasse, String matricule) {
         super(nom, prenom, dateNaissance, genre, adresse, email, motDePasse);
         this.matricule = matricule;
+
     }
+    // Ajoutez un constructeur prenant en compte le rôle
+    public Enseignant(String nom, String prenom, Date dateNaissance, Genre genre, String adresse, String email, String motDePasse, String matricule, RoleType roleType) {
+        super(nom, prenom, dateNaissance, genre, adresse, email, motDePasse);
+        this.matricule = matricule;
+        this.addRole(new Role());
+    }
+
+
+
 
     public String getMatricule() {
         return matricule;
@@ -50,5 +62,6 @@ public class Enseignant extends Users {
     public void setClasse(Classe classe) {
         this.Classes.add(classe);
     }
+
 
 }

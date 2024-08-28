@@ -74,11 +74,11 @@
         <input type="text" id="annee" name="annee" pattern="\d{4}/\d{4}" title="Veuillez entrer l'année au format YYYY/YYYY (ex : 2022/2023)" required>
     </div>
     <div class="form-group">
-                    <label for="enseignantId">Enseignant</label>
-                    <select id="enseignantId" name="enseignantId" class="form-control" required>
-                        <option th:each="enseignant : ${enseignants}" th:value="${enseignant.id}" th:text="${enseignant.nom} + ' ' + ${enseignant.prenom}"></option>
-                    </select>
-                </div>
+        <label for="enseignantId">Enseignant Responsable:</label>
+        <select id="enseignantId" name="enseignantId" class="form-control" required>
+            <option th:each="enseignant : ${enseignants}" th:value="${enseignant.id}" th:text="${enseignant.nom} + ' ' + ${enseignant.prenom}"></option>
+        </select>
+    </div>
     <div>
         <button type="submit">Ajouter</button>
     </div>

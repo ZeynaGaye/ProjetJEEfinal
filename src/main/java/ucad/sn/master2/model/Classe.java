@@ -1,12 +1,19 @@
 package ucad.sn.master2.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.hibernate.annotations.processing.Pattern;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Data
+@AllArgsConstructor
 public class Classe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,10 +22,14 @@ public class Classe {
     private String nom;
     private String description;
     private String niveau;
+    // @Pattern(regexp = "\\d{4}/\\d{4}", message = "Veuillez entrer l'année au format YYYY/YYYY")
+    private String annee;
 
     @ManyToOne
-    @JoinColumn(name = "enseignant_id", nullable = true)
+    @JoinColumn(name = "enseignant_id")
     private Enseignant enseignantResponsable;
+
+
 
     @ManyToMany
     @JoinTable(
@@ -26,19 +37,25 @@ public class Classe {
             joinColumns = @JoinColumn(name = "classe_id"),
             inverseJoinColumns = @JoinColumn(name = "enseignant_id"))
     private Set<Enseignant> enseignants = new HashSet<>();
+
     @OneToMany(mappedBy = "id")
     private List<Module> modules;
 
-    @OneToMany(mappedBy = "id")
-    private List<Users> etudiants,enseignant;
+    @OneToMany(mappedBy = "classe")
+    private List<Etudiant> etudiants;
+
+    @OneToMany(mappedBy = "classe")
+    private List<Enseignant> enseignant;
+
 
 
     public Classe() {}
 
-    public Classe(String nom, String description, String niveau, Enseignant enseignantResponsable) {
+    public Classe(String nom, String description, String niveau, String annee, Enseignant enseignantResponsable) {
         this.nom = nom;
         this.description = description;
         this.niveau = niveau;
+        this.annee = annee;
         this.enseignantResponsable = enseignantResponsable;
     }
 
@@ -74,6 +91,8 @@ public class Classe {
         this.niveau = niveau;
     }
 
+
+
     public Enseignant getEnseignantResponsable() {
         return enseignantResponsable;
     }
@@ -90,25 +109,39 @@ public class Classe {
         this.modules = modules;
     }
 
-    public List<Users> getEtudiants() {
+    public List<Etudiant> getEtudiants() {
         return etudiants;
     }
 
-    public void setEtudiants(List<Users> etudiants) {
+    public void setEtudiants(List<Etudiant> etudiants) {
         this.etudiants = etudiants;
     }
-
 
     public List<Annonce> getAnnonces(List<Annonce> annonce) {
         return annonce;
     }
 
-
-    public List<Users> getEnseignant() {
-        return enseignant;
+    public String getAnnee() {
+        return annee;
     }
 
-    public void setEnseignant(List<Users> enseignant) {
+    public Set<Enseignant> getEnseignants() {
+        return enseignants;
+    }
+
+    public void setAnnee(String annee) {
+        this.annee = annee;
+    }
+
+    public void setEnseignants(Set<Enseignant> enseignants) {
+        this.enseignants = enseignants;
+    }
+
+    public void setEnseignant(List<Enseignant> enseignant) {
         this.enseignant = enseignant;
+    }
+
+    public List<Enseignant> getEnseignant() {
+        return enseignant;
     }
 }

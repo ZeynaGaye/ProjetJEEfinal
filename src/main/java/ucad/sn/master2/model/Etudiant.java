@@ -10,11 +10,11 @@ import java.util.Date;
 @Entity
 public class Etudiant extends Users {
 
-    @Column(name = "numero_etudiant", unique = true) // Ajout d'une colonne unique pour le numéro d'étudiant
+    @Column(name = "numero_etudiant", unique = true)
     private String numeroEtudiant;
 
     @ManyToOne
-    @JoinColumn(name = "classe_id") // Référence vers la classe à laquelle l'étudiant est associé
+    @JoinColumn(name = "classe_id", nullable = false)
     private Classe classe;
 
     public Etudiant() {}

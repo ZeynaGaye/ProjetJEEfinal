@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord enseignant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Palette de couleurs */
+        :root {
+            --primary-color: #3498db; /* Bleu moderne */
+            --secondary-color: #2c3e50; /* Gris foncé */
+            --light-color: #ecf0f1; /* Gris clair */
+            --dark-color: #34495e; /* Gris moyen */
+            --hover-color: #2980b9; /* Bleu foncé pour le hover */
+            --text-color: #2c3e50; /* Couleur du texte */
+        }
+
+        /* Styles CSS personnalisés */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Utilisation de 100% de la hauteur de la vue */
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header img {
+            height: 50px; /* Hauteur du logo */
+            margin-right: 20px; /* Espacement à droite du logo */
+        }
+        nav {
+            background-color: var(--secondary-color);
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        nav ul li {
+            margin-bottom: 10px;
+        }
+        nav ul li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+        nav ul li a:hover {
+            background-color: var(--hover-color);
+        }
+        main {
+            padding: 20px;
+            flex: 1; /* Occupe tout l'espace restant */
+            overflow-y: auto; /* Scrollbar verticale si nécessaire */
+        }
+        .container {
+            max-width: 900px; /* Réduit la largeur du conteneur */
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .user-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .user-info p {
+            margin: 5px 0;
+        }
+        .user-info img {
+            max-width: 150px; /* Taille maximale de l'image */
+            border-radius: 50%; /* Forme circulaire */
+        }
+        .card {
+            background-color: var(--light-color);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="/images/OIP.jpg" alt=""> <!-- Logo ajouté ici -->
+    <h1>Plate-Forme de partage de ressources de la section informatique</h1>
+</header>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--secondary-color);">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/enseignant/annonces"><i class="fas fa-bullhorn"></i> Gérer les annonces</a></li>
+            <li class="nav-item"><a  class="nav-ink" href="/ressource/ressource-ajoutee"><i class="fas fa-folder-open"></i> Gérer les ressources</a></li>
+<!--            <li class="nav-item"><a class="nav-link" href="/enseignant/modules"><i class="fas fa-book"></i> Gérer les modules</a></li>-->
+            <li class="nav-item"><a class="nav-link" href="/users/reset-password-form"><i class="fas fa-key"></i> Modifier Mot de passe</a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <div class="container">
+        <section class="user-info">
+            <h2>Informations personnelles</h2>
+            <div class="card">
+               <!-- <img src="/images/enseignant.jpg" alt="Photo de l'enseignant"> -- Image ajoutée ici -->
+                <p><strong></strong> <span th:text="${prenom}"></span></p>
+                <p><strong></strong></strong><span th:text="${nomEtudiant}"></span></p>
+                <p><strong></strong> <span th:text="${matricule}"></span></p>
+            </div>
+        </section>
+        <section class="section">
+            <h2>Bienvenue</h2>
+            <div class="card">
+                <!-- Contenu de la section Bienvenue -->
+                <p>Bienvenue sur votre tableau de bord enseignant.</p>
+                <!--<img src="/images/bienvenue.jpg" alt="Image de bienvenue"> -- Image ajoutée ici -->
+            </div>
+        </section>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

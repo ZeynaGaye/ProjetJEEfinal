@@ -48,4 +48,14 @@ public class ModuleServiceImpl implements ModuleService {
     public void deleteModule(Long id) {
         moduleRepository.deleteById(id);
     }
+
+    @Override
+    public List<java.lang.Module> getModulesForClasse(Long classeId) {
+
+            return moduleRepository.findByClasseId(classeId);
+        }
+
+
+
+
 }

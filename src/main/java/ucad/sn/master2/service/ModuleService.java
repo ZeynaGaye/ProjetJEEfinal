@@ -20,4 +20,6 @@ public interface ModuleService {
 
     // Méthode pour supprimer un module par son identifiant
     void deleteModule(Long id);
+
+    List<java.lang.Module> getModulesForClasse(Long classeId);
 }

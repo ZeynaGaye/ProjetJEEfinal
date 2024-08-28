@@ -24,12 +24,12 @@ public class UsersController {
     @Autowired
     private ClasseRepository classeRepository;
 
-    @GetMapping("/users/add")
-    public String showAddUserForm(Model model) {
-        model.addAttribute("userForm", new Users());
-        model.addAttribute("classes", classeRepository.findAll());
-        return "addUser";
-    }
+    //@GetMapping("/users/add")
+    //public String showAddUserForm(Model model) {
+      //  model.addAttribute("userForm", new Users());
+      //  model.addAttribute("classes", classeRepository.findAll());
+       // return "addUser";
+   // }
 
     @PostMapping("/users/add")
     public String addUser(Users userForm, String userType, String numeroEtudiant, Long classeId, String matricule) {

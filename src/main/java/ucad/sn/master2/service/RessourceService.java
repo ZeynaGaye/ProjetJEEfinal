@@ -1,5 +1,6 @@
 package ucad.sn.master2.service;
 
+import ucad.sn.master2.model.Enseignant;
 import ucad.sn.master2.model.Ressource;
 
 import java.util.List;
@@ -22,4 +23,8 @@ public interface RessourceService {
     void deleteRessource(Long id);
 
     List<Ressource> getRessourcesByClasseId(Long id);
+
+    List<Ressource> getRessourcesByEnseignant(Enseignant enseignant);
+
+    List<Ressource> getRessourcesForModule(Long moduleId);
 }
