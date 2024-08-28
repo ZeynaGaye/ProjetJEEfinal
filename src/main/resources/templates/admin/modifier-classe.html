@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifier une Classe</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css"> <!-- Assurez-vous que ce fichier CSS existe et contient vos styles -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .form-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .form-container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-container form {
+      display: grid;
+      gap: 10px;
+    }
+    .form-container label {
+      font-weight: bold;
+    }
+    .form-container input[type="text"],
+    .form-container input[type="date"],
+    .form-container select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .form-container button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .form-container button:hover {
+      background-color: #0056b3;
+    }
+    .back-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-button a {
+      text-decoration: none;
+      color: #007bff;
+      font-weight: bold;
+    }
+    .back-button a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="form-container">
+  <h1>Modifier une Classe</h1>
+  <form th:action="@{/admin/modifier-classe/{id}(id=${classe.id})}" th:object="${classe}" method="post">
+    <div>
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" th:field="*{nom}" required />
+    </div>
+    <div>
+      <label for="description">Description :</label>
+      <input type="text" id="description" th:field="*{description}" required />
+    </div>
+    <div>
+      <label for="niveau">Niveau :</label>
+      <input type="text" id="niveau" th:field="*{niveau}" required />
+    </div>
+    <div>
+      <label for="annee">Année :</label>
+      <input type="text" id="annee" th:field="*{annee}" required />
+    </div>
+    <div>
+      <label for="enseignantResponsable">Professeur Responsable :</label>
+      <select id="enseignantResponsable" th:field="*{enseignantResponsable.id}">
+        <option value="">Sélectionnez un professeur</option>
+        <option th:each="enseignant : ${enseignants}"
+                th:value="${enseignant.id}"
+                th:text="${enseignant.nom} + ' ' + ${enseignant.prenom}"></option>
+      </select>
+    </div>
+    <button type="submit">Enregistrer les modifications</button>
+  </form>
+  <div class="back-button">
+    <a th:href="@{/admin/listClasses}">Retour à la liste des classes</a>
+  </div>
+</div>
+</body>
+</html>

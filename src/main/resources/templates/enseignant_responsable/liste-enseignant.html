@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Enseignants</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        .table-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .table-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+        .add-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 3px;
+        }
+        .add-link:hover {
+            background-color: #0056b3;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5 mb-3">Liste des Enseignants</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Date de Naissance</th>
+            <th>Genre</th>
+            <th>Adresse</th>
+            <th>Email</th>
+            <th>Matricule</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="enseignant : ${enseignants}">
+            <td th:text="${enseignant.nom}"></td>
+            <td th:text="${enseignant.prenom}"></td>
+            <td th:text="${enseignant.dateNaissance}"></td>
+            <td th:text="${enseignant.genre}"></td>
+            <td th:text="${enseignant.adresse}"></td>
+            <td th:text="${enseignant.email}"></td>
+            <td th:text="${enseignant.matricule}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

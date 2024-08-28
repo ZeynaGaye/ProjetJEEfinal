@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Ressource Ajoutée</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+  <h1>Confirmation d'ajout de ressource</h1>
+</header>
+<main>
+  <div class="confirmation-message">
+    <h2>La ressource a été ajoutée avec succès !</h2>
+    <p>Nom de la ressource : <span th:text="${ressource.nom}"></span></p>
+    <p>Description : <span th:text="${ressource.description}"></span></p>
+    <p>Chemin du fichier : <a th:href="@{${ressource.chemin}}" th:text="${ressource.chemin}"></a></p>
+  </div>
+  <div class="actions">
+    <a href="/ressource/add">Ajouter une autre ressource</a> |
+    <a href="/ressource/list">Voir toutes les ressources</a>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2024 </p>
+</footer>
+</body>
+</html>

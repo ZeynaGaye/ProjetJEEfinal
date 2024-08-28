@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Enseignant Responsable Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <h1>Bienvenue sur le Tableau de Bord des Enseignants Responsables</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a th:href="@{/enseignantresponsable/profile}">Profil</a></li>
+        <li><a th:href="@{/enseignantresponsable/classes}">Mes Classes</a></li>
+        <li><a th:href="@{/enseignantresponsable/evaluations}">Évaluations</a></li>
+        <li><a th:href="@{/enseignantresponsable/gestion}">Gestion de la Classe</a></li>
+        <li><a th:href="@{/logout}">Déconnexion</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section>
+        <h2>Dernières Activités</h2>
+        <p>Vous n'avez pas de nouvelles activités récentes.</p>
+    </section>
+
+    <section>
+        <h2>Notifications</h2>
+        <ul>
+            <li>Aucune notification pour le moment.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Gestion de la Classe</h2>
+        <ul>
+            <li><a th:href="@{/enseignantresponsable/gestion/emploi-du-temps}">Gestion des Emplois du Temps</a></li>
+            <li><a th:href="@{/enseignantresponsable/gestion/notes}">Gestion des Notes</a></li>
+            <li><a th:href="@{/enseignantresponsable/gestion/absences}">Gestion des Absences</a></li>
+            <li><a th:href="@{/enseignantresponsable/gestion/ajouter-module}">Ajouter un Module</a></li>
+            <li><a th:href="@{/enseignantresponsable/gestion/ajouter-annonce}">Ajouter une Annonce</a></li>
+            <li><a th:href="@{/enseignantresponsable/gestion/affecter-enseignant}">Affecter un Enseignant à une Classe</a></li>
+            <li><a th:href="@{/enseignantresponsable/gestion/ajouter-ressource}">Ajouter une Ressource à la Classe</a></li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Votre École. Tous droits réservés.</p>
+</footer>
+</body>
+</html>

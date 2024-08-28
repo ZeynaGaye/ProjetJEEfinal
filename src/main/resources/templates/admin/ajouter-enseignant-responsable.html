@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter Enseignant</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 20px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: grid;
+            gap: 10px;
+        }
+        .form-container label {
+            font-weight: bold;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="password"],
+        .form-container input[type="email"],
+        .form-container input[type="date"],
+        .form-container select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .form-container select {
+            width: 100%;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+        .form-container a {
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .flex > div {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h1>Ajouter Enseignant Responsable</h1>
+    <form th:action="@{/admin/ajouter-enseignant-responsable}" th:object="${enseignanteResponsable}" method="post">
+        <div class="flex">
+            <div>
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" th:field="*{nom}" required />
+            </div>
+            <div>
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" th:field="*{prenom}" required />
+            </div>
+        </div>
+        <div class="flex">
+            <div>
+                <label for="dateNaissance">Date de Naissance :</label>
+                <input type="date" id="dateNaissance" th:field="*{dateNaissance}" required />
+            </div>
+            <div>
+                <label for="genre">Genre :</label>
+                <select id="genre" th:field="*{genre}">
+                    <option value="MASCULIN">Homme</option>
+                    <option value="FEMININ">Femme</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex">
+            <div>
+                <label for="adresse">Adresse :</label>
+                <input type="text" id="adresse" th:field="*{adresse}" required />
+            </div>
+            <div>
+                <label for="email">Email :</label>
+                <input type="email" id="email" th:field="*{email}" required />
+            </div>
+        </div>
+        <div class="flex">
+            <div>
+                <label for="motDePasse">Mot de Passe :</label>
+                <input type="password" id="motDePasse" th:field="*{motDePasse}" required />
+            </div>
+            <div>
+                <label for="matricule">Matricule :</label>
+                <input type="text" id="matricule" th:field="*{matricule}" required />
+            </div>
+        </div>
+
+        <button type="submit">Ajouter</button>
+    </form>
+    <a th:href="@{/liste-enseignants-Responsable}">Retour à la liste</a>
+</div>
+</body>
+</html>

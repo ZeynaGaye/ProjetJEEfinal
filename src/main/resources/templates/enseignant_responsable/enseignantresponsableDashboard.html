@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord - Enseignant Responsable</title>
+  <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .title {
+            font-size: 3em;
+            margin: 0;
+            position: absolute;
+            white-space: nowrap;
+            animation: slideContinuous 20s linear infinite;
+            transform: translateY(-50%);
+            top: 50%;
+            left: 100%;
+        }
+        @keyframes slideContinuous {
+            from {
+                left: 100%;
+            }
+            to {
+                left: -100%;
+            }
+        }
+        nav {
+            background-color: #343a40;
+            padding: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #495057;
+            color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .container h2 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h3 {
+            color: #007bff;
+            border-bottom: 1px solid #007bff;
+            padding-bottom: 5px;
+        }
+        .card-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+            flex: 1;
+            max-width: 300px;
+            text-align: center;
+        }
+        .card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .stat-card-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .stat-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+            flex: 1;
+            max-width: 300px;
+        }
+        .stat-card p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .stat-card p strong {
+            display: block;
+            font-size: 22px;
+            color: #007bff;
+        }
+        .calendar, .map {
+            margin-top: 30px;
+        }
+        .calendar {
+            text-align: center;
+        }
+        .map {
+            height: 400px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        footer {
+          text-align: center;
+          background-color: #343a40;
+          color: white;
+          padding: 10px;
+          width: 100%;
+        }
+    </style>
+</head>
+<body>
+<header>
+  <h1>Plate-Forme de partage de ressources de la section informatique</h1>
+</header>
+
+<nav>
+  <ul>
+    <li class="nav-item"><a class="nav-link" href="/enseignant/annonces"><i class="fas fa-bullhorn"></i> Gérer les annonces</a></li>
+    <li><a href="/enseignantresponsable/addModule">Ajouter Module</a></li>
+    <li><a href="/enseignantresponsable/addClasse">Ajouter Enseignant à une Classe</a></li>
+    <li class="nav-item"><a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+  </ul>
+
+</nav>
+
+<div class="container">
+  <section class="section">
+    <h2>Bienvenue, Enseignant Responsable</h2>
+<!--    <p>Utilisez le menu pour gérer les modules, les enseignants, les étudiants, et les annonces de vos classes.</p>-->
+  </section>
+
+  <section class="section">
+    <h3>Actions Rapides</h3>
+    <div class="card-container">
+      <div class="card">
+        <a href="/enseignantresponsable/listClasses" class="btn">Lister les Classes</a>
+      </div>
+      <div class="card">
+        <a href="/enseignantresponsable/liste-enseignant" class="btn">Lister les Enseignants</a>
+      </div>
+      <div class="card">
+        <a href="/enseignantresponsable/liste" class="btn">Lister les Étudiants</a>
+      </div>
+    </div>
+  </section>
+
+<!--  <section class="section">-->
+<!--    <h3>Statistiques</h3>-->
+<!--    <div class="stat-card-container">-->
+<!--      <div class="stat-card">-->
+<!--        <p><strong>Nombre total de modules :</strong> 10</p>-->
+<!--      </div>-->
+<!--      <div class="stat-card">-->
+<!--        <p><strong>Nombre total d'étudiants :</strong> 150</p>-->
+<!--      </div>-->
+<!--      <div class="stat-card">-->
+<!--        <p><strong>Nombre total d'enseignants :</strong> 30</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+
+  <section class="section calendar">
+    <h3>Calendrier</h3>
+    <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID&ctz=Africa%2FDakar" style="border: 0; width: 100%; height: 400px;" frameborder="0" scrolling="no"></iframe>
+  </section>
+
+  <section class="section map">
+    <h3>Carte de l'Université Cheikh Anta Diop</h3>
+    <div id="map"></div>
+  </section>
+</div>
+
+<script>
+    function initMap() {
+        var universityLocation = { lat: 14.6902, lng: -17.4457 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: universityLocation
+        });
+        var marker = new google.maps.Marker({
+            position: universityLocation,
+            map: map,
+            title: 'Université Cheikh Anta Diop, Dakar'
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+<footer>
+  <p>&copy; 2024 SectionInformatique. Tous droits réservés.</p>
+</footer>
+</body>
+</html>
